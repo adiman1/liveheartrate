@@ -68,7 +68,7 @@ The GATT profiles and UUIDs are standards assigned by the **Bluetooth SIG (Speci
 | Heart Rate Service     | `0x180D`     | `0000180d-0000-1000-8000-00805f9b34fb`         |
 | Heart Rate Measurement | `0x2A37`     | `00002a37-0000-1000-8000-00805f9b34fb`         |
 
-These ID's are the one used to subscribe for relevant data of the device.
+These ID's are the one used to subscribe for relevant data of the device. In our case Heart Rate Services and Notifications
 
 ---
 
