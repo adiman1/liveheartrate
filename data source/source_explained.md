@@ -77,6 +77,10 @@ Say an example packet with say two - 8 bit Binary bytes:
 - Byte 0: 00010100
 - Byte 1: 01011010
 
+> **Notes**:  
+> 1. Each bit is either 0 or 1  
+> 2. Bits in a byte are read from **right to left**
+
 According to the SIG specs for (Heart Rate Characteristic/UUID - `0x2A37`):
 
 - **Byte 0**   → Flags  
@@ -89,6 +93,7 @@ According to the SIG specs for (Heart Rate Characteristic/UUID - `0x2A37`):
 ### 3.1 Byte 0 – Flags
 
 Flags are indicators that show whether optional attributes are present.  
+
 Since there are 8 bits, each one signifies the presence/absence of a feature.
 
 | Bit | Meaning                                             |
