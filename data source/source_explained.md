@@ -44,8 +44,10 @@ In this project, **Garmin acts as a BLE peripheral**, and a Python client runnin
 
 BLE communication is based on the **Generic Attribute Profile (GATT)**. It defines how data is organized and exchanged between devices.
 
-<pre lang="markdown"> ```text GATT Profile └── Service (e.g., Heart Rate Service) └── Characteristic (e.g., Heart Rate Measurement) └── Value (actual data sent from the device) ``` </pre>
-
+GATT Profile
+└── Service (e.g., Heart Rate Service)
+    └── Characteristic (e.g., Heart Rate Measurement)
+        └── Value (actual data sent from the device)
 
 Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. These UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
 
@@ -64,7 +66,8 @@ There are 8 services and 18 characteristics/values in the Broadcast HR option. T
 
 ### Sample GATT Structure
 
-<pre lang="markdown"> ```text [Service] 0000180d-0000-1000-8000-00805f9b34fb: Heart Rate └─ [Char] 00002a37-0000-1000-8000-00805f9b34fb (['notify']) ``` </pre>
+[Service] 0000180d-0000-1000-8000-00805f9b34fb: Heart Rate
+└─ [Char]   00002a37-0000-1000-8000-00805f9b34fb (['notify'])
 
 In BLE terms, the `notify` property means the device supports **asynchronous data transmission** when the characteristic value is updated.  
 You **subscribe** to it, and whenever your heart rate changes, the device **pushes** the updated data automatically.
