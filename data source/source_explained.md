@@ -52,9 +52,8 @@ BLE communication uses somtething called the **Generic Attribute Profile (GATT)*
 │           └── Value: e.g., Heart Rate = 90 bpm
 
 
-When a characteristic supports `notify`, the device pushes updates whenever the value changes — perfect for real-time monitoring.
-
-Basically Heart rate is **pushed** to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
+-When a characteristic supports `notify`, the device pushes updates whenever the value changes — perfect for real-time monitoring.
+-Basically Heart rate is **pushed** to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
 
 Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. 
 The GATT profiles and UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
