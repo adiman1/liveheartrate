@@ -44,15 +44,12 @@ In this project, **Garmin acts as a BLE peripheral**, and a Python client runnin
 
 BLE communication is based on the **Generic Attribute Profile (GATT)**. It defines how data is organized and exchanged between devices.
 
-GATT Profile:
-Service (e.g., Heart Rate Service)
-└── Characteristic (e.g., Heart Rate Measurement)
-└── Value (actual data sent from the device)
+<pre lang="markdown"> ```text GATT Profile └── Service (e.g., Heart Rate Service) └── Characteristic (e.g., Heart Rate Measurement) └── Value (actual data sent from the device) ``` </pre>
 
 
-Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. These **UUIDs are standards**, assigned by the Bluetooth SIG (Special Interest Group), and are supported by most smartwatches.
+Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. These UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
 
-There are 8 services and 18 characteristics/values in the Broadcast HR option. The ones we need are below:
+There are 8 services and 18 characteristics/values in the Broadcast HR option. The ones we need are listed below.
 
 ---
 
@@ -67,8 +64,7 @@ There are 8 services and 18 characteristics/values in the Broadcast HR option. T
 
 ### Sample GATT Structure
 
-[Service] 0000180d-0000-1000-8000-00805f9b34fb: Heart Rate
-├─ [Char] 00002a37-0000-1000-8000-00805f9b34fb (['notify'])
+<pre lang="markdown"> ```text [Service] 0000180d-0000-1000-8000-00805f9b34fb: Heart Rate └─ [Char] 00002a37-0000-1000-8000-00805f9b34fb (['notify']) ``` </pre>
 
 In BLE terms, the `notify` property means the device supports **asynchronous data transmission** when the characteristic value is updated.  
 You **subscribe** to it, and whenever your heart rate changes, the device **pushes** the updated data automatically.
@@ -85,37 +81,23 @@ This mechanism is:
 
 When the PC subscribes to the **Heart Rate Measurement Characteristic (`0x2A37`)**, Garmin sends out **binary packets** containing the current heart rate and optional metadata.
 
-The Heart Rate Measurement (`0x2A37`) spec is defined by Bluetooth as:
+Example (2 bytes):  00010100 01011010
+
+According to the (`0x2A37`) spec:
 
 - **Byte 0** → Flags  
 - **Byte 1–2** → Heart Rate Value (8-bit or 16-bit, depends on bit 0 of flags)  
 - **Byte 3–4** → Energy Expended (optional, if bit 3 = 1)  
-- **Byte 5+** → RR-Interval (optional, if bit 4 = 1)  
+- **Byte 5+** → RR-Interval (optional, if bit 4 = 1)
 
-Let's break down what this means.
-
----
-
-### Byte Data Example
-
-Suppose a BLE heart rate monitor sends the following 2 bytes:
-**binary data: 00010100 01011010**
-
-
-According to the spec:
-
-- **Byte 0** (Flags): `00010100`  
-- **Byte 1** (Heart Rate Value): `01011010`  
+In the next section lets understand what they mean
 
 ---
 
-### Byte 0 – Flags Breakdown
+### Byte 0 – Flag Breakdown
 
-First, what is a *flag*?
-
-A **flag** is an indicator to show whether an attribute exists or not. Since there are 8 bits, each bit is assigned to **indicate the presence or absence of an attribute**.
-
-The table below is defined by Bluetooth for **Byte 0** of the Heart Rate Measurement Characteristic (`0x2A37`):
+Flags are indicators that show whether optional attributes are present.  
+Since there are 8 bits, each one signifies the presence/absence of a feature.
 
 | Bit | Meaning                                             |
 |-----|-----------------------------------------------------|
@@ -126,12 +108,13 @@ The table below is defined by Bluetooth for **Byte 0** of the Heart Rate Measure
 | 4   | RR Interval values included (yes or no)             |
 | 5–7 | Reserved for future use                             |
 
-**Note:**  
-1. Each binary bit has two levels – 0 and 1  
-2. Bits are read from right to left
+> **Notes**:  
+> 1. Each bit is either `0` or `1`  
+> 2. Bits are read **right to left**
 
-So, for Byte 0 = `00010100`:
+Now, for the binary value `00010100`:
 
+<pre>
 0 0 0 1 0 1 0 0
 │ │ │ │ │ │ │ └─ Heart Rate Format: 8-bit (0)
 │ │ │ │ │ │ └───── Sensor Contact Detected: No (0)
@@ -141,35 +124,34 @@ So, for Byte 0 = `00010100`:
 │ │ └───────────────────── Reserved
 │ └───────────────────────── Reserved
 └───────────────────────────── Reserved
+</pre>
 
-**Reserved** implies unused or future-configurable fields.
+**Reserved** bits are unused or reserved for future Bluetooth specs.
 
 ---
 
 ### Byte 1 – Heart Rate Value
 
-Byte 1: `01011010`  
-This is the actual **Heart Rate (HR)** in binary format.
+Byte 1 = `01011010`  
+This binary value represents the actual **Heart Rate (HR)** in beats per minute.
 
-Each bit has a **power-of-2 weight**, as shown below:
+Each bit has a power-of-2 value:
 
 | Bit Position (index) | 7   | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
 |----------------------|-----|----|----|----|----|----|----|----|
 | Power of 2           | 128 | 64 | 32 | 16 | 8  | 4  | 2  | 1  |
 
-Now let’s decode the byte:
+And the breakdown of the byte:
 
 | Bit Position (index) | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 |----------------------|---|---|---|---|---|---|---|---|
 | Bit Value (binary)   | 0 | 1 | 0 | 1 | 1 | 0 | 1 | 0 |
 | Contribution         | 0 |64 | 0 |16 | 8 | 0 | 2 | 0 |
 
-Sum of contributions = **64 + 16 + 8 + 2 = 90**
+**Sum** = 64 + 16 + 8 + 2 = **90 bpm**
 
-So, `01011010` (Byte 1) corresponds to a heart rate of **90 bpm**.
+So, `01011010` = **90 beats per minute**
 
 ---
 
-Next, we’ll explore how to **access and transform** this binary data via Python.
-
-
+Next, we'll see how to **access and transform** this binary data via Python.
