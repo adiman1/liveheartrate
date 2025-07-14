@@ -102,6 +102,8 @@ Flags are indicators that show whether optional attributes are present.
 
 Since there are 8 bits, each one signifies the presence/absence of a feature.
 
+Therfore the SIG Defined flag attributes for each bit in Byte 0 are
+
 | Bit | Meaning                                             |
 |-----|-----------------------------------------------------|
 | 0   | Heart Rate format: 8-bit or 16-bit                  |
@@ -133,7 +135,7 @@ Byte 1 = `01011010`
 
 This Byte 1 binary value represents the actual **Heart Rate (HR)** in beats per minute.
 
-Here each bit has a power-of-2 value:
+Here each bit has a power-of-2 value as per SIG definition for Byte 1:
 
 | Bit Position (index) | 7   | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
 |----------------------|-----|----|----|----|----|----|----|----|
