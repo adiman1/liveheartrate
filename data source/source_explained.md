@@ -79,8 +79,8 @@ In our case Heart Rate Services and Notifications
 Garmin sends **binary packets** with the heart rate and optional data fields when subscribed to the `Heart Rate Measurement` characteristic.
 
 Say an example packet with say two - 8 bit Binary bytes:  
-- Byte 0: 00010100
-- Byte 1: 01011010
+- **Byte 0**: 00010100
+- **Byte 1**: 01011010
 
 > **Notes**:  
 > 1. Each bit is either 0 or 1  
