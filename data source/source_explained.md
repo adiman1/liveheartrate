@@ -66,9 +66,11 @@ There are 8 services and 18 characteristics/values in the Broadcast HR option. T
 
 ### Sample GATT Structure
 
-[Service] 0000180d-0000-1000-8000-00805f9b34fb : Heart Rate
-├── [Characteristic] 00002a37-0000-1000-8000-00805f9b34fb : Heart Rate Measurement
-│   └── Properties: ['notify']
+GATT Profile  
+├── Service: Heart Rate Service (`0x180D`)  
+│   └── Characteristic: Heart Rate Measurement (`0x2A37`)  
+│       └── Properties: ['notify']  
+│           └── Value: e.g., Heart Rate = 90 bpm
 
 In BLE terms, the `notify` property means the device supports **asynchronous data transmission** when the characteristic value is updated.  
 You **subscribe** to it, and whenever your heart rate changes, the device **pushes** the updated data automatically.
