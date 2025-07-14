@@ -56,6 +56,7 @@ When a characteristic supports `notify`, the device pushes updates whenever the 
 Basically Heart rate is **pushed** to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
 
 Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. 
+
 The GATT profiles and UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
 
 ---
