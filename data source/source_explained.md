@@ -44,10 +44,11 @@ It has 2 parts and In our setup:
 BLE communication uses the **Generic Attribute Profile (GATT)**, which defines how data is structured and exchanged over BLE.
 
 Example GATT Profile for our HR Case
-
-├── Service: Heart Rate Service (0x180D)
-│ └── Characteristic: Heart Rate Measurement (0x2A37)
-│ └── Properties: ['notify']
+ 
+├── Service: Heart Rate Service (`0x180D`)  
+│   └── Characteristic: Heart Rate Measurement (`0x2A37`)  
+│       └── Properties: ['notify']  
+│           └── Value: e.g., Heart Rate = 90 bpm
 
 When a characteristic supports `notify`, the device pushes updates whenever the value changes — perfect for real-time monitoring.
 Basically Heart rate is pushed to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
@@ -72,9 +73,9 @@ These ID's are the one used to subscribe for relevant data of the device.
 
 Garmin sends **binary packets** with the heart rate and optional data fields when subscribed to the `Heart Rate Measurement` characteristic.
 
-Say an example packet with say 2 bytes:  
-Byte 0: 00010100
-Byte 1: 01011010
+Say an example packet with say two - 8 bit Binary bytes:  
+- Byte 0: 00010100
+- Byte 1: 01011010
 
 According to the SIG specs for (Heart Rate Characteristic/UUID - `0x2A37`):
 
