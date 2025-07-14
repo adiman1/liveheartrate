@@ -135,7 +135,7 @@ Byte 1 = `01011010`
 
 This Byte 1 binary value represents the actual **Heart Rate (HR)** in beats per minute.
 
-Here each bit has a power-of-2 value as per SIG definition for Byte 1:
+Here each bit has a **power of 2** value as per SIG definition for Byte 1:
 
 | Bit Position (index) | 7   | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
 |----------------------|-----|----|----|----|----|----|----|----|
