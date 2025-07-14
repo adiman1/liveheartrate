@@ -78,7 +78,8 @@ In our case Heart Rate Services and Notifications
 
 Garmin sends **binary packets** with the heart rate and optional data fields when subscribed to the `Heart Rate Measurement` characteristic.
 
-Say an example packet with say two - 8 bit Binary bytes:  
+Say it sends an example packet with say two 8-bit Binary bytes:  
+
 - **Byte 0**: 00010100
 - **Byte 1**: 01011010
 
@@ -110,7 +111,7 @@ Since there are 8 bits, each one signifies the presence/absence of a feature.
 | 4   | RR Interval present (yes/no)                        |
 | 5–7 | Reserved                                            |
 
-> For example, `00010100` means:  
+> Therefore in our Byte 0 - `00010100`:  
 
 <pre>
 0 0 0 1 0 1 0 0
@@ -132,7 +133,7 @@ Byte 1 = `01011010`
 
 This Byte 1 binary value represents the actual **Heart Rate (HR)** in beats per minute.
 
-Each bit has a power-of-2 value:
+Here each bit has a power-of-2 value:
 
 | Bit Position (index) | 7   | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
 |----------------------|-----|----|----|----|----|----|----|----|
