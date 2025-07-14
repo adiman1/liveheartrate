@@ -11,7 +11,7 @@
 
 Using a feature called **Broadcast HR**, Garmin can transmit heart rate data to external devices in real time.
 
-Garmin uses **Bluetooth Low Energy (BLE)**
+Garmin uses **Bluetooth Low Energy (BLE)** protocol for this
 
 ---
 
