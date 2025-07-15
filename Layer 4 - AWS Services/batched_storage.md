@@ -209,7 +209,7 @@ While S3 is just object storage, it becomes much more powerful when paired with 
 Sample Query:
 1) What is the maximum and minimum heart rate, and the difference between them, recorded between 3:40 PM and 4:00 PM UTC (9:10-9:30 PM in IST) today?
 
-![Query 1]()
+![Query 1](https://github.com/adiman1/liveheartrate/blob/ff260a8bdfe0bd7ea94e1c2c5669ab7b5844c926/Layer%204%20-%20AWS%20Services/images/Athena%20Heart%20rate%20diff%20in%20session.png)
 
 ---
 
