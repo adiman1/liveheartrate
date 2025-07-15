@@ -41,7 +41,7 @@ In Python, this is done using the `async` and `await` keywords, and is supported
 
 ---
 
-### Why Async is Needed Here
+### 2.2 Why Async is Needed Here
 
 BLE devices (like Garmin) **send data periodically**, and waiting for each data packet **blocks the entire program** if using normal (synchronous) code.
 
