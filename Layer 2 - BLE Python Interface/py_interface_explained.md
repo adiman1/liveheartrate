@@ -81,5 +81,9 @@ pip install bleak
 5) In our case, we are parsing only the 8-bit HR (most common) data.
 6) For production, extend parsing for Flags, Energy Expended, RR Interval if needed.
 
+---
+
+Next, In this section, Let's us see the code creating the interface between Garmin and PC
+
 
 
