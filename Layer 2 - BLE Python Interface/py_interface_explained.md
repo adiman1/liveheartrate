@@ -48,7 +48,7 @@ BLE devices (like Garmin) **send data periodically**, and waiting for each data 
 With **async**:
 
 - The app **subscribes once** to notifications (like heart rate updates)
-- It can **continue logging from server and send data to cloud**
+- allows your program to continue logging, send data to the cloud, and even respond to user's input — all **concurrently**, without waiting for each task to finish before starting the next
 - It handles **real-time BLE events** efficiently and smoothly
 
 ---
