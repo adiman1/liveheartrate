@@ -21,7 +21,7 @@ This is achieved using the **Bleak** library in Python, a modern, asynchronous B
 
 ---
 
-## 2a. What is async?
+## 2.1 What is async?
 
 **Asynchronous programming** (often called "async") allows a program to perform other operations **without waiting** for a time-consuming task to finish.
 
@@ -37,7 +37,7 @@ In Python, this is done using the `async` and `await` keywords, and is supported
 | Program halts while waiting (e.g. for data) | Program stays responsive while waiting       |
 | Not ideal for I/O heavy tasks               | Ideal for I/O, networking, BLE communication |
 
-![Sync vs Async](images/sync vs async.png)
+![Sync vs Async](Layer 2 - BLE Python Interface/images/sync%20vs%20async.png)
 
 ---
 
