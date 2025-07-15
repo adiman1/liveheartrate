@@ -25,14 +25,14 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 1) Kinesis Data Firehose is a **serverless data delivery service**.
 2) It **reads data from Kinesis Data Streams**, **transforms it if needed, buffers it, and delivers it automatically to storage destinations** like Amazon S3.
 
-### 💡 Why Firehose?
+### Why Firehose?
 
 - **No manual polling** from KDS — Firehose handles it.
 - Converts raw JSON into **Parquet** (efficient columnar format).
 - Batches data based on buffer size or time.
 - Automatically writes to S3 with timestamp-based paths.
 
-### 🔧 Configuration Summary
+### Configuration Summary
 
 | Setting                        | Value                                                                |
 |--------------------------------|----------------------------------------------------------------------|
