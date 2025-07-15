@@ -78,6 +78,7 @@ Common examples:
 - **S3** – to react to new file uploads.
 - **API Gateway** – for serverless APIs.
 - **CloudWatch Events / EventBridge** – for scheduled runs.
+---
 
 ### 3.2.1) Trigger Configuration
 
