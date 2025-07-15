@@ -83,7 +83,12 @@ garmin-hr-s3-bucket/
                 └── session_21-25-19/
                     └── part-*.parquet
 ```
-  
+
+**Basically this prefix was used to represent the date-hour-second at which i recorded a session.**
+
+In Console
+
+
 
 
 
