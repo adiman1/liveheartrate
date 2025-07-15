@@ -36,7 +36,7 @@ OpenSearch Dashboard (Line chart for real-time heart rate)
 ```                                                                        
 
 
-## 3) AWS Lambda – The Processing & Forwarding Engine
+## A) AWS Lambda – The Processing & Forwarding Engine
 
 Lambda acts as the **event-driven compute layer** in this architecture.
 
@@ -44,18 +44,18 @@ Lambda acts as the **event-driven compute layer** in this architecture.
 - Each record is decoded, parsed, and forwarded securely to OpenSearch.
 - Supports Multiple Languages.
 
-### 4) Why Lambda?
+### 1) Why Lambda?
 
 - Serverless and scales with traffic.
 - Built-in integration with Kinesis Streams.
 
-## 5) Important Parts of a Lambda Function Setup
+## 2) Important Parts of a Lambda Function Setup
 
 Lambda functions in AWS consist of several key components that determine how they behave and integrate with other AWS services.
 
 ---
 
-### 5.1) Code
+### 3.1) Code
 
 This is the core logic of the Lambda function — written in languages like Python, Node.js, etc.
 
@@ -66,7 +66,7 @@ This is the core logic of the Lambda function — written in languages like Pyth
 
 ---
 
-### 5.2) Trigger
+### 3.2) Trigger
 
 Triggers are AWS services that invoke the Lambda automatically.
 
@@ -82,9 +82,9 @@ Trigger configuration includes:
 - Batch size (for stream-based triggers)
 - Filters (optional, to limit triggering conditions)
 
-#### 5.2.1) Trigger Configuration
+### 3.2.1) Trigger Configuration
 
-#### Lambda Trigger Configuration – With Meaning
+### Lambda Trigger Configuration – With Meaning
 
 | Setting       | Value                        | Meaning                                                                 |
 |---------------|------------------------------|-------------------------------------------------------------------------|
@@ -95,7 +95,7 @@ Trigger configuration includes:
 
 ---
 
-### 5.3) IAM Role (Execution Role)
+### 3.3) IAM Role (Execution Role)
 
 Defines what resources the Lambda is **allowed to access**.
 
@@ -109,7 +109,7 @@ Defines what resources the Lambda is **allowed to access**.
 
 ---
 
-### 5.4) Environment Variables
+### 3.4) Environment Variables
 
 Used to inject configuration into the function **without hardcoding** it.
 
@@ -119,13 +119,13 @@ Examples:
 - Domain URLs (e.g., OpenSearch endpoint)
 
 Accessed inside code as:
+
 ```python
 import os
 domain = os.environ['OPENSEARCH_ENDPOINT']
+```
 
----
-
-### 5.5) Lambda Layers – Why We Needed One
+### 3.5) Lambda Layers – Why We Needed One
 
 1) In our case, we use the **Python runtime** in Lambda to process our JSON data from Kinesis Data Stream (KDS).  
 2) However, **AWS Lambda's standard Python environment does not include external libraries** like:
@@ -133,7 +133,7 @@ domain = os.environ['OPENSEARCH_ENDPOINT']
    - `requests_aws4auth`
 3) These libraries are **essential** for making HTTP requests to OpenSearch.
 
-#### 5.5.1) Solution
+### 3.5.1) Solution
 
 - We created a **Lambda Layer** that packages the required 3rd-party dependencies.
 - This layer is attached to our Lambda function, enabling it to:
@@ -144,20 +144,20 @@ domain = os.environ['OPENSEARCH_ENDPOINT']
 
 ---
 
-## 🔎 Amazon OpenSearch – Real-Time Analytics Store
+## B) Amazon OpenSearch – Real-Time Analytics Store
 
 OpenSearch is a **distributed search and analytics engine** optimized for high-speed ingestion and querying.
 
 It acts as our **real-time database**, receiving individual heart rate records and making them immediately searchable and visualizable.
 
-### Why OpenSearch?
+### 1) Why OpenSearch?
 
 - Supports fast, filtered lookups across massive volumes.
 - Natively integrates with OpenSearch Dashboard for real-time charts.
 - JSON document store — ideal for time-series data like heart rate.
 - Scalable, durable, and secure.
 
-### What is OpenSearch?
+### 2) What is OpenSearch?
 
 - Not a traditional database.
 - A **search-first document storage engine**.
