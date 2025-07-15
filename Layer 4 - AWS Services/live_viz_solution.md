@@ -280,6 +280,9 @@ This enables us to slice, query, and visualize heart rate trends over time.
 3. Users can **interactively zoom**, filter time ranges, and apply conditions.
 4. Since OpenSearch uses **inverted indexing**, queries and visualizations are fast and efficient.
 
+&nbps;
+
+**Click Image to Download a sample video of the Live Dashboard**
 
 [![Watch Live Demo](https://github.com/adiman1/liveheartrate/raw/ae07506a38c7b8cb48a4dea78600e1bb44360c1d/Layer%204%20-%20AWS%20Services/images/live_stream_end.png)](https://github.com/adiman1/liveheartrate/raw/e126701b2c4053bde1ce51f4c42d09ace07613ae/OpenSearch%20Dashboard%20Livestream.mp4)
 
