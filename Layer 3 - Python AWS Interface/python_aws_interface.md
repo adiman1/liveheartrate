@@ -108,3 +108,35 @@ Before using boto3, ensure your environment is authenticated.
 
 Simplest method is via an AWS credentials file (~/.aws/credentials), can also use .env files and other methods available
 
+---
+
+## 5. Cloud Prerequisites and Requirements
+
+### 5.1 Prerequisite: Create an AWS Account
+
+To use AWS SDKs, including `boto3`, you must first:
+
+1. Go to [https://aws.amazon.com](https://aws.amazon.com)  
+2. Click **Create an AWS Account**
+3. Provide:
+   - Email address
+   - Password
+   - Billing information (credit/debit card)
+   - Phone verification
+4. Choose a support plan (Free Tier is usually enough for development)
+
+### 5.2 Creating a Kinesis Data Stream
+
+KDS Config/Settings used: 
+
+- name - hr-kinesis-stream
+- Capacity mode – Provisioned
+- Provisioned shards -1
+- Write capacity - Maximum is 1 MiB/second, 1,000 records/second
+- Read capacity – Maximum, 2 MiB/second
+
+
+
+
+
+
