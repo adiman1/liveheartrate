@@ -247,7 +247,7 @@ This enables us to slice, query, and visualize heart rate trends over time.
 
 ---
 
-### 6) Purpose in Our Architecture
+### 1) Purpose in Our Architecture
 
 - To **monitor heart rate data in near real-time**.
 - To visually validate that data streamed from the BLE device → PC → Kinesis → Lambda → OpenSearch is being captured and indexed correctly.
@@ -255,7 +255,7 @@ This enables us to slice, query, and visualize heart rate trends over time.
 
 ---
 
-### 7) Dashboard Configuration
+### 2) Dashboard Configuration
 
 | Setting             | Value                                  |
 |---------------------|----------------------------------------|
@@ -269,7 +269,7 @@ This enables us to slice, query, and visualize heart rate trends over time.
 
 ---
 
-### 8) How It Works
+### 3) How It Works
 
 1. Dashboards connect to the **`heart_rate` index**, which is continuously populated by Lambda.
 2. The **timestamp field** is used to display the heart rate trend over time.
@@ -284,7 +284,7 @@ This enables us to slice, query, and visualize heart rate trends over time.
 
 ---
 
-### 9) Access Control
+### 4) Access Control
 
 - Fine-grained access control was enabled.
 - Dashboards are protected with **username/password login**.
