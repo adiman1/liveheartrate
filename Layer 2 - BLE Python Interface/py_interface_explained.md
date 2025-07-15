@@ -71,7 +71,7 @@ pip install bleak
 ```
 ---
 
-### 4. Notes
+## 4. Notes
 
 1) Ensure Bluetooth is enabled on the PC.
 2) Connect via normal PIN Connection.
