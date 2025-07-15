@@ -133,11 +133,11 @@ To use AWS SDKs, including `boto3`, you must first:
 - **Write capacity** – Up to 1 MiB/sec or 1,000 records/sec
 - **Read capacity** – Up to 2 MiB/sec (shared by all consumers)
 
-&nbsp;&nbsp;
+&nbsp;
 
 ![Kinesis Stream Configuration](https://raw.githubusercontent.com/adiman1/liveheartrate/ef4d42bac5dd9367d65920eac6519ff6b6322348/Layer%203%20-%20Python%20AWS%20Interface/images/KDS%20Config.png)
 
-&nbsp;&nbsp;
+&nbsp;
 
 ### 5.2.2 KDS Config Explained
 
@@ -151,8 +151,6 @@ Here’s what each of these parameters means:
 | **Write Capacity**  | Limited by shard count. For 1 shard, your producer (BLE script) should stay within this limit. |
 | **Read Capacity**   | Shared across all consumers (e.g., Lambda, Firehose, OpenSearch). |
 
-
-> ** KDS Notes**
 > 1 shard is sufficient for single-device heart rate data.  
 > You can always **scale up** later by splitting or merging shards.
 
