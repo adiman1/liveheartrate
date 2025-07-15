@@ -64,6 +64,8 @@ This is the core logic of the Lambda function — written in languages like Pyth
 - Performs actions like transformation, data forwarding, logging, etc.
 - Can use environment variables for configuration.
 
+[Run post configuring IAM Roles, OpenSearch Domain](https://github.com/adiman1/liveheartrate/blob/0fce4fbb24fb32ec6e4438bb98cceb8b12516eea/Layer%204%20-%20AWS%20Services/lambda_os.py)
+
 ---
 
 ### 3.2) Trigger
