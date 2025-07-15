@@ -1,6 +1,6 @@
-# Layer 4 – AWS Services  
+# Layer 4 – AWS Services 
 
-## Section 1: Batched Storage
+## Solution for Batched Storage
 
 ### 1) Purpose
 Store heart rate data from the BLE device in **batch form** for historical analysis, audits, or further processing.
