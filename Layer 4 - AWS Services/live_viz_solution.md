@@ -16,24 +16,24 @@ To address this, we built a **low-latency streaming pipeline** using managed AWS
 
 ### 2) High-Level Data Flow
 
-                                                                        ```plaintext
-                                                                        Garmin BLE Watch 
-                                                                            ↓ (via Bleak - Python)
+```plaintext
+Garmin BLE Watch 
+    ↓ (via Bleak - Python)
                                                                         
-                                                                        PC (Python Script)
-                                                                            ↓ (uses boto3 to send records)
+PC (Python Script)
+    ↓ (uses boto3 to send records)
                                                                         
-                                                                        Kinesis Data Stream (KDS)
-                                                                            ↓ (triggers)
+Kinesis Data Stream (KDS)
+    ↓ (triggers)
                                                                         
-                                                                        AWS Lambda Function (Processes & Signs Requests)
-                                                                            ↓ (using SigV4-authenticated HTTP requests)
+AWS Lambda Function (Processes & Signs Requests)
+    ↓ (using SigV4-authenticated HTTP requests)
                                                                         
-                                                                        Amazon OpenSearch
-                                                                            ↓ (index: heart_rate)
+Amazon OpenSearch
+   ↓ (index: heart_rate)
                                                                         
-                                                                        OpenSearch Dashboard (Line chart for real-time heart rate)
-                                                                        ```
+OpenSearch Dashboard (Line chart for real-time heart rate)
+```                                                                        
 
 
 ## 3) AWS Lambda – The Processing & Forwarding Engine
