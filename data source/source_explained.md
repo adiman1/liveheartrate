@@ -46,10 +46,10 @@ It has 2 parts and In our setup:
 **Example GATT Profile for our HR Case**
 
  
-├── Service: Heart Rate Service (`0x180D`)  
-│   └── Characteristic: Heart Rate Measurement (`0x2A37`)  
-│       └── Properties: ['notify']  
-│           └── Value: e.g., Heart Rate = 90 bpm
+   ├── Service: Heart Rate Service (`0x180D`)  
+   │   └── Characteristic: Heart Rate Measurement (`0x2A37`)  
+   │       └── Properties: ['notify']  
+   │           └── Value: e.g., Heart Rate = 90 bpm
 
 2) When a characteristic supports `notify`, the server/device pushes updates to the client whenever the value changes — perfect for real-time monitoring.
    
@@ -68,9 +68,7 @@ It has 2 parts and In our setup:
 | Heart Rate Service     | `0x180D`     | `0000180d-0000-1000-8000-00805f9b34fb`         |
 | Heart Rate Measurement | `0x2A37`     | `00002a37-0000-1000-8000-00805f9b34fb`         |
 
-These ID's are the one used to subscribe for relevant data of the device. 
-
-In our case Heart Rate Services and Notifications
+1) These ID's are the one used to subscribe for relevant data of the device. (1.e) Heart Rate Services and Notifications
 
 ---
 
