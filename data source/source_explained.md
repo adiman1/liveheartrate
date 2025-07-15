@@ -80,10 +80,6 @@ For Example: These ID's are the one used to subscribe for relevant data of the d
 - **Byte 0**: 00010100
 - **Byte 1**: 01011010
 
-> **Notes**:  
-> 1. Each bit is either 0 or 1  
-> 2. Bits in a byte are read from **right to left**
-
 3) According to the SIG specs for (Heart Rate Characteristic/UUID - `0x2A37`):
 
 - **Byte 0**   → Flags  
@@ -95,9 +91,9 @@ For Example: These ID's are the one used to subscribe for relevant data of the d
 
 ### 3.1 Byte 0 – Flags
 
-1) Flags are indicators that show whether optional attributes are present.  
+1) Flags are indicators that show whether certain attributes/features are present or not.  
 
-2) Since there are 8 bits, each one signifies the presence/absence of a feature.
+2) Since there are 8 bits, each one signifies the presence/absence of a attribute/feature.
 
 3) Therfore the SIG Defined flag attributes for each bit in Byte 0 are
 
@@ -109,6 +105,10 @@ For Example: These ID's are the one used to subscribe for relevant data of the d
 | 3   | Energy expended value present (yes/no)              |
 | 4   | RR Interval present (yes/no)                        |
 | 5–7 | Reserved                                            |
+
+> **Notes**:  
+> 1. Each bit is either 0 or 1  
+> 2. Bits in a byte are read from **right to left**
 
 > Therefore in our Byte 0 - `00010100`:  
 
