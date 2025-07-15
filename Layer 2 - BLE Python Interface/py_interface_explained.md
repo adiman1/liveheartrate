@@ -66,7 +66,7 @@ Install the necessary libraries:
 
 ```bash
 pip install bleak
-
+```
 ---
 
 ### 4. Notes
