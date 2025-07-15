@@ -43,8 +43,7 @@ It has 2 parts and In our setup:
 
 1) BLE communication uses something called the **Generic Attribute Profile (GATT)** to define how data is structured and exchanged over BLE.
 
-**Example GATT Profile for our HR Case**
-
+**Example GATT Profile/Data Stucture for our HR Data**
  
    │--Service: Heart Rate Service (`0x180D`)  
    │   └── Characteristic: Heart Rate Measurement (`0x2A37`)  
@@ -53,22 +52,22 @@ It has 2 parts and In our setup:
 
 2) When a characteristic supports `notify`, the server/device pushes updates to the client whenever the value changes — perfect for real-time monitoring.
    
-3) Basically Changing/Continuous Heart rate is **pushed** to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
-   
-4) Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. 
-
-5) The GATT profiles and UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
+3) Basically Changing/Continuous Heart rate is **pushed** to our PC when we subscribe to the garmin device and the service (i.e) Heart Rate Service (0x180D).
 
 ---
 
 ### 2.3 UUIDs Used
+
+1) Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. 
+
+2) The GATT profiles and UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
 
 | Component              | UUID (Short) | Full UUID                                      |
 |------------------------|--------------|------------------------------------------------|
 | Heart Rate Service     | `0x180D`     | `0000180d-0000-1000-8000-00805f9b34fb`         |
 | Heart Rate Measurement | `0x2A37`     | `00002a37-0000-1000-8000-00805f9b34fb`         |
 
-1) These ID's are the one used to subscribe for relevant data of the device. (1.e) Heart Rate Services and Notifications
+3) These ID's are the one used to subscribe for relevant data of the device. (1.e) Heart Rate Services and Notifications
 
 ---
 
