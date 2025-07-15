@@ -125,6 +125,8 @@ import os
 domain = os.environ['OPENSEARCH_ENDPOINT']
 ```
 
+---
+
 ### 3.5) Lambda Layers – Why We Needed One
 
 1) In our case, we use the **Python runtime** in Lambda to process our JSON data from Kinesis Data Stream (KDS).  
@@ -150,6 +152,8 @@ OpenSearch is a **distributed search and analytics engine** optimized for high-s
 
 It acts as our **real-time database**, receiving individual heart rate records and making them immediately searchable and visualizable.
 
+---
+
 ### 1) Why OpenSearch?
 
 - Supports fast, filtered lookups across massive volumes.
@@ -157,12 +161,16 @@ It acts as our **real-time database**, receiving individual heart rate records a
 - JSON document store — ideal for time-series data like heart rate.
 - Scalable, durable, and secure.
 
+---
+
 ### 2) What is OpenSearch?
 
 - Not a traditional database.
 - A **search-first document storage engine**.
 - Each document is stored in JSON-like structure.
 - Perfect for logging, telemetry, and live metrics dashboards.
+
+---
 
 ### Configuration Summary
 
