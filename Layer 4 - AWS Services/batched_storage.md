@@ -50,7 +50,7 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 
 > **Notes**
 > 1) Buffer size - 64 MB (set lowest, cause our data from KDS is a few mb at max (10 mb at max for a 15 mins run).
-> 2) With direct json ingestion – min buffer size can be 1 mb
+> 2) With direct JSON ingestion – min buffer size can be set at 1 mb
 > 3) Buffer interval - 60 seconds (set at max value 900, to get a single/couple parquet files in S3 for a 15 min run)
 
 ---
@@ -150,7 +150,23 @@ garmin-hr-s3-bucket/
                 └── session_17-24-00/
 ```
 
-The same pattern can be seen in the image attached above in S3 Folder Structure 
+The same pattern can be seen in the image (blue highlighted section) attached above in S3 Folder Structure.
+
+Parquet Files can be seen in each session folder.
+
+### 4) Why S3
+
+- S3 objects live forever unless deleted or transitioned via lifecycle rules.
+- You pay for storage, requests, and transfers separately.
+- Optimize costs using:
+  - Fewer, larger files
+  - Appropriate storage class transitions
+  - Lifecycle policies for cleanup
+
+---
+
+
+
 
 
 
