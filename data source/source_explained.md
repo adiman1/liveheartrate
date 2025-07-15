@@ -46,7 +46,7 @@ It has 2 parts and In our setup:
 **Example GATT Profile for our HR Case**
 
  
-   ├── Service: Heart Rate Service (`0x180D`)  
+   │--Service: Heart Rate Service (`0x180D`)  
    │   └── Characteristic: Heart Rate Measurement (`0x2A37`)  
    │       └── Properties: ['notify']  
    │           └── Value: e.g., Heart Rate = 90 bpm
