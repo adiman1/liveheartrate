@@ -31,13 +31,13 @@ In Python, this is done using the `async` and `await` keywords, and is supported
 
 ### Synchronous vs Asynchronous
 
+![Sync vs Async](https://github.com/adiman1/liveheartrate/blob/ee708bfd3b1cc5d85d590fb11a7a6e92a0cc0849/Layer%202%20-%20BLE%20Python%20Interface/images/sync%20vs%20async.png)
+
 | Synchronous (blocking)                      | Asynchronous (non-blocking)                  |
 |---------------------------------------------|----------------------------------------------|
 | Waits for each task to finish fully         | Can handle multiple tasks concurrently       |
 | Program halts while waiting (e.g. for data) | Program stays responsive while waiting       |
 | Not ideal for I/O heavy tasks               | Ideal for I/O, networking, BLE communication |
-
-![Sync vs Async](https://github.com/adiman1/liveheartrate/blob/ee708bfd3b1cc5d85d590fb11a7a6e92a0cc0849/Layer%202%20-%20BLE%20Python%20Interface/images/sync%20vs%20async.png)
 
 ---
 
