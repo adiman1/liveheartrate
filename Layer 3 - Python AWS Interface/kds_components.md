@@ -59,7 +59,7 @@
 | Enhanced Fan-out  | Not Enabled                                                                 |
 | Retention         | 24 hours (default, extendable)                                              |
 
-Since each json record in our is **Only 2 KB in Size and we get 2 records per sec implying Extremely low Write Throughput** 
+Since each json record in our is **Only 2 KB in Size and we get 2 records per sec implying Extremely low Write Throughput.** 
 
-Therfore we have used config for the least compute
+Therfore we have used config for the **Least compute.**
 
