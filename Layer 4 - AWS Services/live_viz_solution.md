@@ -128,6 +128,8 @@ domain = os.environ['OPENSEARCH_ENDPOINT']
    - `requests_aws4auth`
 3) These libraries are **essential** for making HTTP requests to OpenSearch.
 
+---
+
 ### 3.5.1) Solution
 
 - We created a **Lambda Layer** that packages the required 3rd-party dependencies.
