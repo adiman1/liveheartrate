@@ -106,7 +106,9 @@ pip install boto3
 
 Before using boto3, ensure your environment is authenticated.
 
-Simplest method is via an AWS credentials file (~/.aws/credentials), can also use .env files and other methods available
+Simplest method is via an AWS credentials file (~/.aws/credentials), can also use .env files and other methods available.
+
+AWS credentials is basically a folder with access creds in the user directory.
 
 ---
 
@@ -193,7 +195,7 @@ aws_access_key_id = AKIAEXAMPLEIAM
 aws_secret_access_key = abcdefghijklmnopqrstuvwxyzIAM
 ```
 
-### Method 2: Use Root account’s ID and Access Key in creds folder (Not Recommended)
+### Alt Method (Not Recommended): Use Root account’s ID and Access Key in creds folder
 
 ---
 
