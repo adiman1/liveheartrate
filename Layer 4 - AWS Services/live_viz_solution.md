@@ -91,7 +91,7 @@ Common examples:
 | Records/sec   | ~2 (from BLE stream)         | The BLE script sends approx. **2 heart rate records per second**.      |
 | Response Time | <1 second from BLE to OS     | The **end-to-end latency** (from BLE → Lambda → OpenSearch) is typically **under 1 second**, enabling near real-time visualization. 
 
-[KDS Trigger]
+[KDS Trigger](https://github.com/adiman1/liveheartrate/blob/982020d39fd79884fb12f874d58aabf8be9e8d9e/Layer%204%20-%20AWS%20Services/images/Lambda%20Structure.png)
 
 ---
 
