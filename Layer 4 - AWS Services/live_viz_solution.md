@@ -1,9 +1,9 @@
-## Layer 4 – AWS Services  
-### 🟢 Solution for Live Visualization (Live-Viz)
+# Layer 4 – AWS Services  
+## Solution for Live Visualization (Live-Viz)
 
 ---
 
-### 1) Purpose
+## 1) Purpose
 
 Stream and visualize real-time heart rate data from the BLE device to:
 
@@ -13,7 +13,7 @@ Stream and visualize real-time heart rate data from the BLE device to:
 
 ---
 
-### 2) Core AWS Services Involved
+## 2) Core AWS Services Involved
 
 | Service                   | Role in Live Visualization Pipeline                               |
 |---------------------------|-------------------------------------------------------------------|
@@ -24,13 +24,13 @@ Stream and visualize real-time heart rate data from the BLE device to:
 
 ---
 
-### 3) Flow Summary
+## 3) Flow Summary
 
 Garmin BLE (via PC) → Kinesis Data Stream → Lambda → OpenSearch → OpenSearch Dashboard
 
 ---
 
-### 4) Key Features
+## 4) Key Features
 
 - ⚡ **Near real-time** (<5s delay) data streaming and visualization  
 - 🚨 **Alert triggers** handled in Lambda for high-BPM conditions  
@@ -39,7 +39,7 @@ Garmin BLE (via PC) → Kinesis Data Stream → Lambda → OpenSearch → OpenSe
 
 ---
 
-### 5) Design Trade-offs & Justifications
+## 5) Design Trade-offs & Justifications
 
 -  **No sub-second or 1-second polling**:
   - AWS **Timestream** (best suited for time-series at that granularity) was intentionally **not used** to keep the architecture simpler and avoid service sprawl.
