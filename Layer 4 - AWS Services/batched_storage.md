@@ -86,7 +86,11 @@ garmin-hr-s3-bucket/
 
 **Basically this prefix was used to represent the date-hour-second at which we recorded a session.**
 
-In Console
+#### S3 Bucket Structure
+
+Observe the top left corner, you can see the structure created by firehose.
+
+![S3 Folder Structure](https://github.com/adiman1/liveheartrate/blob/b9176c37a0a7328327bd0fd3cb86c54ba379116c/Layer%204%20-%20AWS%20Services/images/S3%20Folder%20Structure.png)
 
 
 
