@@ -1,5 +1,5 @@
-# ───────────────────────────────────────────────────────────────────
 # File: python_aws_interface.py
+# ───────────────────────────────────────────────────────────────────
 # Description: Streams heart rate data from a Garmin device via BLE 
 #              and sends a JSON Package with Timestamp and Heart Rate
 #              in real-time to AWS Kinesis Data Streams.
@@ -11,20 +11,19 @@ from datetime import datetime
 from bleak import BleakClient
 import asyncio
 
-
 # ────────────────────────────────────────────────────────────────────────
 # BLE (Bluetooth Low Energy) Configuration - with Data from our Test ipynb
 # ────────────────────────────────────────────────────────────────────────
-# MAC address of the Garmin device (acts as BLE peripheral)
+# MAC address
 address = "D4:4A:C4:B0:24:03" 
 
-# UUID for the Heart Rate Measurement Characteristic (0x2A37)
+# UUID for the Heart Rate Measurement (0x2A37)
 HR_UUID = "00002a37-0000-1000-8000-00805f9b34fb"
 
 # ────────────────────────────────────────────────
 # AWS Kinesis Configuration
 # ────────────────────────────────────────────────
-# Initialize Kinesis client (uses default profile or env vars)
+# Initialize Kinesis client (via default profile or env vars)
 kinesis = boto3.client("kinesis", region_name="ap-south-1")
 
 # Name of the target Kinesis Data Stream we created
@@ -74,7 +73,7 @@ async def stream_heart_rate():
     async with BleakClient(address) as client:
         await client.start_notify(HR_UUID, handle_notification)
         print("Streaming heart rate for 900 seconds...")
-        await asyncio.sleep(900)  # Stream for 15 minutes
+        await asyncio.sleep(900)  # Stream for 15 minutes, set as per requirement
         await client.stop_notify(HR_UUID)
         print("Stopped streaming.")
 
