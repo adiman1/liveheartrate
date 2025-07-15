@@ -34,7 +34,7 @@ Amazon OpenSearch
                                                                         
 OpenSearch Dashboard (Line chart for real-time heart rate)
 ```                                                                        
-
+---
 
 ## A) AWS Lambda – The Processing & Forwarding Engine
 
@@ -79,11 +79,6 @@ Common examples:
 - **API Gateway** – for serverless APIs.
 - **CloudWatch Events / EventBridge** – for scheduled runs.
 
-Trigger configuration includes:
-- Event source ARN
-- Batch size (for stream-based triggers)
-- Filters (optional, to limit triggering conditions)
-
 ### 3.2.1) Trigger Configuration
 
 ### Lambda Trigger Configuration – With Meaning
@@ -94,6 +89,8 @@ Trigger configuration includes:
 | Batch Size    | 2 records                    | The Lambda **executes after every 2 records** are available in the stream.|
 | Records/sec   | ~2 (from BLE stream)         | The BLE script sends approx. **2 heart rate records per second**.      |
 | Response Time | <1 second from BLE to OS     | The **end-to-end latency** (from BLE → Lambda → OpenSearch) is typically **under 1 second**, enabling near real-time visualization. 
+
+[KDS Trigger]
 
 ---
 
@@ -180,13 +177,13 @@ OpenSearch stores and organizes data in a **hierarchical structure** similar to 
 | **Node**       | A single instance of OpenSearch. In our case, we used a single-node cluster. |
 | **Index**      | Equivalent to a **table** in a database. Each index stores a set of documents. |
 | **Document**   | A **JSON object** representing a single record (e.g., one heart rate reading). |
-| **Mapping**    | The **schema definition** of an index — defines fields, types, and structure. |
+| **Mapping**    | The **schema definition** of an index. It defines the fields, types, and structure. |
 | **Shard**      | A physical division of an index. Enables horizontal scalability and parallelism. |
 | **Replica**    | A copy of a shard for fault tolerance. Stored on a different node than the primary shard. |
 
 ---
 
-### 4) Index Mapping: `heart_rate`
+### 3.1) Index Mapping: `heart_rate`
 
 In our setup, we created an index called **`heart_rate`**, which stores real-time HR data streamed from BLE to OpenSearch via Lambda.
 
@@ -205,9 +202,34 @@ Here’s the mapping configuration used:
     }
   }
 }
+```
 
+---
 
-### Configuration Summary
+### 3.1.1) What Are Indexes Used For?
+
+Indexes in OpenSearch are like **optimized databases for search and analytics**. They are used to:
+
+- **Store structured JSON documents** (e.g., heart rate, timestamp).
+- **Enable fast full-text and field-based search** using inverted indexes.
+- **Perform time-based filtering and aggregation**, making them perfect for time-series data like heart rate streams.
+- **Enable analytics**, dashboards, and alerting using built-in tools or external platforms like Grafana.
+
+In our project:
+
+- The **`heart_rate` index** stores each record coming from the BLE → Kinesis → Lambda → OpenSearch pipeline.
+- Each record is a document with structure:
+  ```json
+  {
+    "timestamp": "2025-07-15T17:10:33",
+    "heart_rate": 89
+  }
+
+This enables us to slice, query, and visualize heart rate trends over time.
+
+---
+
+### 4) Configuration Summary
 
 | Parameter            | Value                      |
 |----------------------|----------------------------|
@@ -221,14 +243,72 @@ Here’s the mapping configuration used:
 | IP Access Type       | Public IPv4                |
 | Auth & Access Control| IAM + Fine-Grained via Role |
 
+## C) OpenSearch Dashboards – Real-Time Visualization
 
+1) OpenSearch Dashboards is the **visual interface** for exploring and interacting with data stored in OpenSearch indexes. 
+2) It helps in building live charts, analyzing trends, and setting up observability for time-series data.
 
+---
 
+### 6) Purpose in Our Architecture
 
+- To **monitor heart rate data in near real-time**.
+- To visually validate that data streamed from the BLE device → PC → Kinesis → Lambda → OpenSearch is being captured and indexed correctly.
+- To identify spikes or abnormalities (e.g., heart rate > 150 bpm) quickly.
 
+---
 
+### 7) Dashboard Configuration
 
-### Additional but Necessary Information
+| Setting             | Value                                  |
+|---------------------|----------------------------------------|
+| **Chart Type**      | Line Chart                             |
+| **X-Axis**          | `timestamp` (aggregated per 5 seconds) |
+| **Y-Axis**          | `heart_rate` (Last value)              |
+| **Metric Used**     | Last heart rate per 5-sec window       |
+| **Index Pattern**   | `heart_rate`                           |
+| **Update Frequency**| Near real-time (~1 second delay)       |
+| **Optional Filter** | Alert when heart rate > 150 bpm        |
+
+---
+
+### 8) How It Works
+
+1. Dashboards connect to the **`heart_rate` index**, which is continuously populated by Lambda.
+2. The **timestamp field** is used to display the heart rate trend over time.
+3. Users can **interactively zoom**, filter time ranges, and apply conditions.
+4. Since OpenSearch uses **inverted indexing**, queries and visualizations are fast and efficient.
+
+---
+
+### 9) Access Control
+
+- Fine-grained access control was enabled.
+- Dashboards are protected with **username/password login**.
+- Lambda was authorized via an IAM role with **resource-based access to OpenSearch**.
+
+---
+
+## D) Design Trade-offs & Justifications
+
+-  **No sub-second or 1-second polling**:
+  - AWS **Timestream** (best suited for time-series at that granularity) was intentionally **not used** to keep the architecture simpler and avoid service sprawl.
+  - OpenSearch is capable of near real-time ingestion, but:
+    -  Achieving **sub-second** streaming would require:
+      - High-frequency BLE polling
+      - More aggressive Lambda concurrency
+      - A time-series store optimized for millisecond ingestion like Timestream or InfluxDB
+
+-  **No Grafana integration**:
+  - While OpenSearch can connect to **Grafana**, it was **intentionally avoided** to:
+    - Keep the stack lean
+    - Use **OpenSearch Dashboard natively**, since it supports time-series visualizations and filters out of the box
+
+> This setup provides a balanced trade-off: **simple, low-latency, and cost-efficient** real-time visualization without introducing additional dashboarding or storage complexity.
+
+---
+
+## E) Additional Necessary Information
 
 ### 1) What is SigV4 (Signature Version 4)?
 
@@ -274,84 +354,4 @@ OpenSearch would **reject all unsigned requests** with a 403 "not authorized" er
 - SigV4 ensures **secure, authenticated, and authorized** communication between your Lambda function and OpenSearch.
 - Tools like `requests_aws4auth` make it easy to generate signed HTTP requests using the credentials automatically assumed by Lambda at runtime.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Layer 4 – AWS Services  
-## Solution for Live Visualization (Live-Viz)
-
 ---
-
-## 1) Purpose
-
-Stream and visualize real-time heart rate data from the BLE device to:
-
-- Monitor live heart rate trends during activity
-- Trigger alerts (e.g., HR > 150 bpm)
-- Enable near real-time observation during tests/workouts
-
----
-
-## 2) Core AWS Services Involved
-
-| Service                   | Role in Live Visualization Pipeline                               |
-|---------------------------|-------------------------------------------------------------------|
-| **Amazon Kinesis Data Streams (KDS)** | Ingests real-time BLE heart rate data                 |
-| **AWS Lambda**            | Processes KDS records, applies logic, and forwards to OpenSearch  |
-| **Amazon OpenSearch**     | Stores live heart rate events as documents                        |
-| **OpenSearch Dashboard**  | Visualizes the data via live charts and dashboards                |
-
----
-
-## 3) Flow Summary
-
-Garmin BLE (via PC) → Kinesis Data Stream → Lambda → OpenSearch → OpenSearch Dashboard
-
----
-
-## 4) Key Features
-
-- ⚡ **Near real-time** (<5s delay) data streaming and visualization  
-- 🚨 **Alert triggers** handled in Lambda for high-BPM conditions  
-- 📈 **Live dashboards** via OpenSearch Dashboard (no third-party UI needed)  
-- 🗃️ **Time-stamped document storage** for historical drill-downs  
-
----
-
-## 5) Design Trade-offs & Justifications
-
--  **No sub-second or 1-second polling**:
-  - AWS **Timestream** (best suited for time-series at that granularity) was intentionally **not used** to keep the architecture simpler and avoid service sprawl.
-  - OpenSearch is capable of near real-time ingestion, but:
-    -  Achieving **sub-second** streaming would require:
-      - High-frequency BLE polling
-      - More aggressive Lambda concurrency
-      - A time-series store optimized for millisecond ingestion like Timestream or InfluxDB
-
--  **No Grafana integration**:
-  - While OpenSearch can connect to **Grafana**, it was **intentionally avoided** to:
-    - Keep the stack lean
-    - Use **OpenSearch Dashboard natively**, since it supports time-series visualizations and filters out of the box
-
-> This setup provides a balanced trade-off: **simple, low-latency, and cost-efficient** real-time visualization without introducing additional dashboarding or storage complexity.
-
----
-
-
