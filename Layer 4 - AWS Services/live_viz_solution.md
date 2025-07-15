@@ -16,13 +16,7 @@ To address this, we built a **low-latency streaming pipeline** using managed AWS
 
 ### 2) High-Level Data Flow
 
-```plaintext
-Garmin BLE Watch 
-    ↓ (via Bleak - Python)
-                                                                        
-PC (Python Script)
-    ↓ (uses boto3 to send records)
-                                                                        
+```plaintext                                                     
 Kinesis Data Stream (KDS)
     ↓ (triggers)
                                                                         
