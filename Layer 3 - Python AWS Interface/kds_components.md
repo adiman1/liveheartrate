@@ -40,6 +40,8 @@
 - Default: 24 hours.
 - Extendable up to 7 or 365 days (extended mode).
 
+&nbsp;
+  
 # Kinesis Data Streams – Pipeline Overview
 
 | Component         | Description                                                                 |
