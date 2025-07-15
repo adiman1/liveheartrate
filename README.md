@@ -7,4 +7,4 @@
 
 **High Level Data Flow over Tools**
 
-![High Level Data Flow over Tools](https://github.com/adiman1/liveheartrate/blob/a00cdcde870b9a315ff554fa7fec4609def762c6/images/HR%20Stream%20flow.jpg)
+![High Level Data Flow over Tools](https://github.com/adiman1/liveheartrate/blob/816abf6e47f547c70f397b83099b7481f0aa90f8/images/aws%20flow_page-0001.jpg)
