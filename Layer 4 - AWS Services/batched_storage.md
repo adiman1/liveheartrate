@@ -43,16 +43,40 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 | Destination                    | Amazon S3                                                            |
 | Target S3 Bucket               | `garmin-hr-s3-bucket`                                                |
 | S3 Prefix                      | `heart_rate_data/!{timestamp:yyyy}/!{timestamp:MM}/!{timestamp:dd}/session_!{timestamp:HH-mm-ss}/` |
-| Buffer Size                    | 64 MiB                                                               |
+| Buffer Size                    | 64 MB                                                               |
 | Buffer Interval                | 60 seconds (set max to 900)                                          |
 | Time Zone                      | Asia/Calcutta                                                        |
 
 
 > **Notes**
-> 1) Buffer size - 64 MiB (set lowest, cause our data from KDS is a few mb at max (10 mb at max for a 15 mins run).
-> 2) With direct json ingestion – min buffer size can be 1 Mb
+> 1) Buffer size - 64 MB (set lowest, cause our data from KDS is a few mb at max (10 mb at max for a 15 mins run).
+> 2) With direct json ingestion – min buffer size can be 1 mb
 > 3) Buffer interval - 60 seconds (set at max value 900, to get a single/couple parquet files in S3 for a 15 min run)
 
 ---
+
+## Service 2 - Simple Storage Service (S3) 🪣
+
+Amazon S3 is an **object storage service** that serves as the **landing zone** for processed and batched heart rate data.
+
+It can store a plethora of formats.
+
+In our case, S3 is the landing spot for our batched data from Firehose.
+
+### S3 Folder Structure
+
+1) First create a Bucket.
+2) In our case, we created one called garmin-hr-s3-bucket
+3) If you observe this was given as the name for the Firehose Target. **Hence create S3 object first.**
+4) Also you can observe a Firehose config called S3 Prefix. This is used to partition the incoming Firehose data.
+5) Why the need for partitions  
+   - The structure is **timestamp-partitioned** for easy accessibility and readability.  
+   - It supports **efficient querying** using **Athena or AWS Glue**.
+  
+
+
+
+
+
 
 
