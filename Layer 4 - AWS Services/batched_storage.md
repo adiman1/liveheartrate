@@ -74,7 +74,15 @@ Why the need for partitions:
 - The structure is **timestamp-partitioned** for easy accessibility and readability.  
 - It supports **efficient querying** using **Athena or AWS Glue**.
 
-<pre> ```plaintext garmin-hr-s3-bucket/ └── heart_rate_data/ └── 2025/ └── 07/ └── 13/ └── session_21-25-19/ └── part-*.parquet ``` </pre>
+```plaintext
+garmin-hr-s3-bucket/
+└── heart_rate_data/
+    └── 2025/
+        └── 07/
+            └── 13/
+                └── session_21-25-19/
+                    └── part-*.parquet
+```
   
 
 
