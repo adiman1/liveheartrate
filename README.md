@@ -5,9 +5,9 @@
 
 &nbsp;
 
-**Architecture Overview**
+## Architecture Overview
 
-## This project uses a Lambda-like Architecture
+### This project uses a Lambda-like Architecture
 
 This project implements a real-time heart rate monitoring pipeline using a simplified **Lambda Architecture** pattern.
 
@@ -21,7 +21,7 @@ This project applies the same principle using modern AWS services.
 
 ## Components Mapping
 
-| Lambda Layer      | Our Implementation                                                   |
+| Lambda Layers     | Implementation Used                                                  |
 |-------------------|----------------------------------------------------------------------|
 | **Batch Layer**   | ✅ **Amazon S3** (via Firehose): stores all raw heart rate data      |
 |                   | ✅ **AWS Glue + Athena**: for historical querying                    |
