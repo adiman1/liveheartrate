@@ -206,6 +206,11 @@ While S3 is just object storage, it becomes much more powerful when paired with 
 - Uses the **Glue Data Catalog** as a source of table definitions.
 - Supports efficient, on-demand queries over partitioned datasets.
 
+Sample Query:
+1) What is the maximum and minimum heart rate, and the difference between them, recorded between 3:40 PM and 4:00 PM UTC (9:10-9:30 PM in IST) today?
+
+![Query 1]()
+
 ---
 
 
