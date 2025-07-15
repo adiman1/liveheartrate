@@ -154,5 +154,47 @@ Here’s what each of these parameters means:
 > 1 shard is sufficient for single-device heart rate data.  
 > You can always **scale up** later by splitting or merging shards.
 
+Also configuration of IAM Roles is needed to write from PC via Boto3 to KDS. 
+
+---
+
+## 6. Identity and Access Management
+
+**IAM (Identity and Access Management)** is AWS’s system for managing access to resources.
+
+With IAM, you can:
+- Create users and groups
+- Assign fine-grained permissions to control what they can and can't do
+- Authenticate and authorize API requests made from SDKs like `boto3`
+
+---
+
+## Methods for Authentication
+
+When you run a Python script using `boto3`, AWS must identify **who** is making the request.
+
+There are two main methods:
+
+---
+
+### Method Recommended: Create IAM User
+
+This is the best practice for local scripts, development tools, or any automation outside AWS.
+
+#### Steps:
+1. **Create an IAM User** in the AWS Console/Site
+2. Enable **Programmatic Access** (generates Access Key + Secret Key)
+3. Store credentials in the default location:
+
+```ini
+# ~/.aws/credentials
+[default]
+aws_access_key_id = AKIAEXAMPLEIAM
+aws_secret_access_key = abcdefghijklmnopqrstuvwxyzIAM
+```
+
+### Method 2: Use Root account’s Access Key and Secret Key in creds folder (Not Recommended)
+
+---
 
 
