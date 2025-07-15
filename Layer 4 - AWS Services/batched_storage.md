@@ -2,12 +2,12 @@
 
 ## Section 1: Batched Storage
 
-### Purpose
+### 1) Purpose
 Store heart rate data from the BLE device in **batch form** for historical analysis, audits, or further processing.
 
 ---
 
-### Data Flow Summary
+### 2) Data Flow Summary
 
 Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 
@@ -25,14 +25,14 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 1) Kinesis Data Firehose is a **serverless data delivery service**.
 2) It **reads data from Kinesis Data Streams**, **transforms it if needed, buffers it, and delivers it automatically to storage destinations** like Amazon S3.
 
-### Why Firehose?
+### 1) Why Firehose?
 
 - **No manual polling** from KDS — Firehose handles it.
 - Converts raw JSON into **Parquet** (efficient columnar format).
 - Batches data based on buffer size or time.
 - Automatically writes to S3 with timestamp-based paths.
 
-### Configuration Summary
+### 2) Configuration Summary
 
 | Setting                        | Value                                                                |
 |--------------------------------|----------------------------------------------------------------------|
@@ -60,7 +60,7 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 2) In our case, S3 is the landing spot for our batched data from Firehose.
 3) Also, it can store a plethora of formats.
 
-### S3 Folder Structure
+### 1) S3 Folder Structure
 
 1) First create a Bucket.
 2) In our case, we created one called garmin-hr-s3-bucket
@@ -83,7 +83,7 @@ garmin-hr-s3-bucket/
 
 **Basically this prefix was used to represent the date-hour-second at which we recorded a session.**
 
-### S3 Folder Structure - Image
+### 2) S3 Folder Structure - Image
 
 Observe the top left corner, you can see the structure created by firehose.
 
@@ -91,13 +91,13 @@ Observe the top left corner, you can see the structure created by firehose.
 
 &nbsp;
 
-# ⏱️ Firehose Timestamp & Buffering: How They Impact S3 Partitioning
+## ⏱ Firehose Timestamp & Buffering: How They Impact S3 Partitioning
 
 Lets see how Firehose determines S3 folder structure using ingestion time and how buffer settings influence the number of partitions.
 
 ---
 
-## Ingestion Timestamp vs Data Timestamp
+### 1) Ingestion Timestamp vs Data Timestamp
 
 Each record sent from your Python BLE script includes a field like:
 
@@ -109,7 +109,7 @@ Each record sent from your Python BLE script includes a field like:
 2) Firehose instead uses the record ingestion time (i.e., when Firehose receives it) for substituting placeholders in your configured S3 prefix:
    - heart_rate_data/!{timestamp:yyyy}/!{timestamp:MM}/!{timestamp:dd}/session_!{timestamp:HH-mm-ss}/
 
-## How Firehose Buffer Settings Affect Delivery
+### 2) How Firehose Buffer Settings Affect Delivery
 
 We know our Firehose Buffer Config is:
 
@@ -118,7 +118,7 @@ We know our Firehose Buffer Config is:
 | Buffer Size                    | 64 MB                                                                |
 | Buffer Interval                | 60 seconds                                                           |
 
-### How the Buffer Interval affects Partition Count
+### 3) How the Buffer Interval affects Partition Count
 
 Example: 
 - A 15-minute session (set in py code)
