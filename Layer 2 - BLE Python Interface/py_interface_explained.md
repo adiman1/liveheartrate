@@ -31,7 +31,7 @@ In Python, this is done using the `async` and `await` keywords, and is supported
 
 ### Synchronous vs Asynchronous
 
-![Sync vs Async](https://github.com/adiman1/liveheartrate/blob/ee708bfd3b1cc5d85d590fb11a7a6e92a0cc0849/Layer%202%20-%20BLE%20Python%20Interface/images/sync%20vs%20async.png)
+![Sync vs Async](https://github.com/adiman1/liveheartrate/blob/a39262d896c32bd8d95a5f75ee47e79f4eb07457/Layer%202%20-%20BLE%20Python%20Interface/images/sync%20vs%20async1.png)
 
 | Synchronous (blocking)                      | Asynchronous (non-blocking)                  |
 |---------------------------------------------|----------------------------------------------|
