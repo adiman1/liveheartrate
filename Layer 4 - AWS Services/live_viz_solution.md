@@ -76,7 +76,7 @@ Common examples:
 
 ### 3.2.1) Trigger Configuration
 
-### Lambda Trigger Configuration – With Meaning
+### Lambda Trigger Configuration
 
 | Setting       | Value                        | Meaning                                                                 |
 |---------------|------------------------------|-------------------------------------------------------------------------|
@@ -94,7 +94,7 @@ Common examples:
 Defines what resources the Lambda is **allowed to access**.
 
 - Attached to the function via **Execution Role**.
-- We should grant only least-privilege permissions.
+- We should grant only least-privilege permissions. Ones enough to perform the required actions.
 - Common permissions include:
   - `kinesis:GetRecords` (to fetch KDS records)
   - `logs:CreateLogStream`, `logs:PutLogEvents`
