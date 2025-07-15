@@ -28,6 +28,8 @@ It has 2 parts and In our setup:
 - **Garmin** is the **peripheral/server**
 - **PC with Python** is the **central/client**
 
+- In this project, We only focus on application level data communication and do not explore low-level physical operation of the BLE protocol (such as modulation and signal transmission etc)
+
 ---
 
 ### 2.1 BLE Roles
@@ -140,10 +142,10 @@ Byte 1 = `01011010`
 
 And the breakdown of the byte:
 
-| Bit Position (index) | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
-|----------------------|---|---|---|---|---|---|---|---|
-| Bit Value (binary)   | 0 | 1 | 0 | 1 | 1 | 0 | 1 | 0 |
-| Contribution         | 0 |64 | 0 |16 | 8 | 0 | 2 | 0 |
+| Bit Position (index) | 7 | 6  | 5 | 4  | 3 | 2 | 1 | 0 |
+|----------------------|---|----|---|----|---|---|---|---|
+| Bit Value (binary)   | 0 | 1  | 0 | 1  | 1 | 0 | 1 | 0 |
+| Contribution         | 0 | 64 | 0 | 16 | 8 | 0 | 2 | 0 |
 
 3) **Sum** = 64 + 16 + 8 + 2 = **90 bpm**
 
