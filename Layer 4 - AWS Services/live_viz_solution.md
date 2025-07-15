@@ -64,7 +64,7 @@ This is the core logic of the Lambda function — written in languages like Pyth
 - Performs actions like transformation, data forwarding, logging, etc.
 - Can use environment variables for configuration.
 
-[Run post configuring IAM Roles, OpenSearch Domain](https://github.com/adiman1/liveheartrate/blob/0fce4fbb24fb32ec6e4438bb98cceb8b12516eea/Layer%204%20-%20AWS%20Services/lambda_os.py)
+[Run post configuring IAM Roles, OpenSearch Domain. Seen in Repo as lambda_os.py](https://github.com/adiman1/liveheartrate/blob/0fce4fbb24fb32ec6e4438bb98cceb8b12516eea/Layer%204%20-%20AWS%20Services/lambda_os.py)
 
 ---
 
@@ -299,7 +299,7 @@ This enables us to slice, query, and visualize heart rate trends over time.
 ## D) Design Trade-offs & Justifications
 
 -  **No sub-second or 1-second polling**:
-  - AWS **Timestream** (best suited for time-series at that granularity) was intentionally **not used** to keep the architecture simpler and avoid service sprawl.
+  - AWS **Timestream** (best suited for time-series at that granularity) was **not used** cause of the lack of availability for Free-Tier Users.
   - OpenSearch is capable of near real-time ingestion, but:
     -  Achieving **sub-second** streaming would require:
       - High-frequency BLE polling
@@ -307,7 +307,8 @@ This enables us to slice, query, and visualize heart rate trends over time.
       - A time-series store optimized for millisecond ingestion like Timestream or InfluxDB
 
 -  **No Grafana integration**:
-  - While OpenSearch can connect to **Grafana**, it was **intentionally avoided** to:
+  - While OpenSearch can connect to **Grafana**, it was **intentionally avoided** because:
+    - All the **services were in ap-south-1 zone** and grafana was unavailable. So to avoid mix of zones.
     - Keep the stack lean
     - Use **OpenSearch Dashboard natively**, since it supports time-series visualizations and filters out of the box
 
