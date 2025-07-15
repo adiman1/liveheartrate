@@ -127,16 +127,34 @@ To use AWS SDKs, including `boto3`, you must first:
 
 ### 5.2 Creating a Kinesis Data Stream
 
-KDS Config/Settings used: 
+- **Name** – `hr-kinesis-stream`
+- **Capacity mode** – Provisioned
+- **Provisioned shards** – 1
+- **Write capacity** – Up to 1 MiB/sec or 1,000 records/sec
+- **Read capacity** – Up to 2 MiB/sec (shared by all consumers)
 
-- Name –  hr-kinesis-stream
-- Capacity mode – Provisioned
-- Provisioned shards – 1
-- Write capacity – Maximum is 1 MiB/second, 1,000 records/second
-- Read capacity – Maximum, 2 MiB/second
+&nbsp;&nbsp;
+
+![Kinesis Stream Configuration](https://raw.githubusercontent.com/adiman1/liveheartrate/ef4d42bac5dd9367d65920eac6519ff6b6322348/Layer%203%20-%20Python%20AWS%20Interface/images/KDS%20Config.png)
+
+&nbsp;&nbsp;
+
+### 5.2.2 KDS Config Explained
+
+Here’s what each of these parameters means:
+
+| Setting            | Description |
+|--------------------|-------------|
+| **Stream Name**     | Logical name used in boto3 to identify the stream. |
+| **Provisioned Mode**| You specify shard count manually (vs. On-Demand which auto-scales). |
+| **Shards**          | A shard is a unit of capacity. Each shard allows: <br> ➤ 1,000 writes/sec or 1 MiB/sec write throughput <br> ➤ 2 MiB/sec read throughput |
+| **Write Capacity**  | Limited by shard count. For 1 shard, your producer (BLE script) should stay within this limit. |
+| **Read Capacity**   | Shared across all consumers (e.g., Lambda, Firehose, OpenSearch). |
 
 
-
+> ** KDS Notes**
+> 1 shard is sufficient for single-device heart rate data.  
+> You can always **scale up** later by splitting or merging shards.
 
 
 
