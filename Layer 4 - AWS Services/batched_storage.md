@@ -57,11 +57,9 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 
 ## Service 2 - Simple Storage Service (S3) 🪣
 
-Amazon S3 is an **object storage service** that serves as the **landing zone** for processed and batched heart rate data.
-
-It can store a plethora of formats.
-
-In our case, S3 is the landing spot for our batched data from Firehose.
+1) Amazon S3 is an **object storage service** that serves as the **landing zone** for processed and batched heart rate data.
+2) In our case, S3 is the landing spot for our batched data from Firehose.
+3) Also, it can store a plethora of formats.
 
 ### S3 Folder Structure
 
@@ -85,6 +83,8 @@ garmin-hr-s3-bucket/
 ```
 
 **Basically this prefix was used to represent the date-hour-second at which we recorded a session.**
+
+&nbsp;
 
 ### S3 Folder Structure - Image
 
