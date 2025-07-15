@@ -193,8 +193,9 @@ aws_access_key_id = AKIAEXAMPLEIAM
 aws_secret_access_key = abcdefghijklmnopqrstuvwxyzIAM
 ```
 
-### Method 2: Use Root account’s Access Key and Secret Key in creds folder (Not Recommended)
+### Method 2: Use Root account’s ID and Access Key in creds folder (Not Recommended)
 
 ---
 
+Next, We shall see the code which sends the bleak decoded HR data to Kinesis Data Stream
 
