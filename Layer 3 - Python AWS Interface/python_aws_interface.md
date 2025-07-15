@@ -2,8 +2,8 @@
 
 ## 1. Overview
 
-1) The PC receives **real-time heart rate data** from the Garmin device via BLE.  
-2) It forwards each heart rate data point to an **AWS Kinesis Data Stream (KDS)**.  
+1) The PC receives **real-time heart rate data** from the Garmin device via BLE and interpreted via **Bleak**.  
+2) It forwards each heart rate data point to an **AWS Kinesis Data Stream (KDS)** via **Boto3 SDK**.  
 3) This data stream can then be consumed by other services like:
 
 - AWS Lambda (for transformation and routing)
