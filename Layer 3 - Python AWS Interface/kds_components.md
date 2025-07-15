@@ -40,12 +40,6 @@
 - Default: 24 hours.
 - Extendable up to 7 or 365 days (extended mode).
 
-## 9. Monitoring
-- Uses CloudWatch for metrics:
-  - Incoming/Outgoing bytes
-  - Record age
-  - Put/Get success
-
 # Kinesis Data Streams – Pipeline Overview
 
 | Component         | Description                                                                 |
