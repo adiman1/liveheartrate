@@ -68,10 +68,13 @@ In our case, S3 is the landing spot for our batched data from Firehose.
 1) First create a Bucket.
 2) In our case, we created one called garmin-hr-s3-bucket
 3) If you observe this was given as the name for the Firehose Target. **Hence create S3 object first.**
-4) Also you can observe a Firehose config called S3 Prefix. This is used to partition the incoming Firehose data.
-5) Why the need for partitions  
-   - The structure is **timestamp-partitioned** for easy accessibility and readability.  
-   - It supports **efficient querying** using **Athena or AWS Glue**.
+4) Also you can observe a Firehose config called **S3 Prefix**. This is used to partition the incoming Firehose data.
+   
+Why the need for partitions:
+- The structure is **timestamp-partitioned** for easy accessibility and readability.  
+- It supports **efficient querying** using **Athena or AWS Glue**.
+
+<pre> ```plaintext garmin-hr-s3-bucket/ └── heart_rate_data/ └── 2025/ └── 07/ └── 13/ └── session_21-25-19/ └── part-*.parquet ``` </pre>
   
 
 
