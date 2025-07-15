@@ -165,21 +165,6 @@ Parquet Files can be seen in each session folder.
 
 ---
 
-## 📚 Why Query S3 Data & How Glue + Athena Help
-
-### 🔸 The Need
-
-As heart rate data (or any time-series stream) is delivered to Amazon S3 — especially in formats like **Parquet** and structured with time-based folders — there's often a need to:
-
-- **Explore recent data** for quick insights.
-- **Run ad hoc analytics** across multiple sessions/days.
-- **Build dashboards** or reports on top of streaming output.
-- Avoid writing custom code just to parse or join large files.
-
-While S3 is just object storage, it becomes much more powerful when paired with tools that can **understand its structure** and **query it like a database**.
-
----
-
 ## The Need for Additional Services
 
 As heart rate data (or any time-series stream) is delivered to Amazon S3 — especially in formats like **Parquet** and structured with time-based folders — there's often a need to:
@@ -201,6 +186,17 @@ While S3 is just object storage, it becomes much more powerful when paired with 
 - Result: a **catalog table** (like a database table) stored in the **Glue Data Catalog**.
 
 >  Crawlers can be scheduled to run periodically as new data lands.
+
+###  AWS Glue Crawler Configuration used
+
+| Parameter        | Value                                                   |
+|------------------|---------------------------------------------------------|
+| **Crawler Name** | `hr_data_crawler`                                       |
+| **Data Source**  | `s3://garmin-hr-s3-bucket` (Recrawl all folders)        |
+| **IAM Role**     | `AWSGlueServiceRole-15` (Created via console)           |
+| **Target DB**    | `hr_data`                                               |
+| **Schedule**     | On demand                                               |
+| **Table Schema** | `timestamp` (string), `heart_rate` (number)             |
 
 ---
 
