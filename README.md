@@ -3,7 +3,7 @@ Pipeline built to stream real-time heart rate data from a Garmin smartwatch to t
 
 It reads data over Bluetooth using Python libraries, then uses AWS services to live stream, store, and visualize heart rate data (all in real time).
 
-The project is explained in layers
+The project is explained in layers. Go through folders in sequence for E2E Explanation 
 
 &nbsp;
 
