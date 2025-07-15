@@ -3,8 +3,6 @@
 2) It reads data over Bluetooth using Python libraries, then uses AWS services to live stream, store, and visualize heart rate data (in real time).
 3) The project is explained in Layers. Go through folders in sequence (1 - 4) for E2E Explanation of the Project
 
-&nbsp;
-
 ## Architecture Overview
 
 ### This project uses a Lambda-like Architecture
