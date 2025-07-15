@@ -122,8 +122,8 @@ We know our Firehose Buffer Config is:
 
 Example: 
 - A 15-minute session (set in py code)
-- with 60-second buffer interval (in Firehose),
-- implies a folder created in S3 **every 60 sec/1 min**
+- With 60-second buffer interval (in Firehose),
+- Implies a folder created in S3 **every 60 sec/1 min**
 
 ** Let’s assume your run started at - 2025/07/15/17:10:00**
 
