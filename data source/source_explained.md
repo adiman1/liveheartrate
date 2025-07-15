@@ -107,8 +107,8 @@ For Example: These ID's are the one used to subscribe for relevant data of the d
 | 5–7 | Reserved                                            |
 
 > **Notes**:  
-> 1. Each bit is either 0 or 1  
-> 2. Bits in a byte are read from **right to left**
+> Each bit is either 0 or 1  
+> Bits in a byte are read from **right to left**
 
 > Therefore in our Byte 0 - `00010100`:  
 
