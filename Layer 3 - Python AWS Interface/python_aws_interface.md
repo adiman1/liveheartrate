@@ -11,7 +11,7 @@
 - OpenSearch / Grafana (for dashboards)
 - Glue / Athena (for querying)
 
-This layer enables **low-latency ingestion** and **real-time processing** of heart rate telemetry aka **Streaming**
+This layer enables **low latency ingestion** and **real time processing** of heart rate telemetry aka **Streaming**
 
 ---
 
@@ -37,7 +37,7 @@ This layer enables **low-latency ingestion** and **real-time processing** of hea
 In our case:
 
 - The **Garmin watch** sends heart rate data every few seconds via BLE.
-- We want to **capture each reading in real-time** on the PC.
+- We want to **capture each reading in real time** on the PC.
 - Then we immediately **forward it to AWS Kinesis Data Stream**.
 
 This enables us to forward data instantenously to other AWS cloud services which provide:
@@ -99,7 +99,7 @@ To install `boto3` using pip:
 
 ```bash
 pip install boto3
-
+```
 ---
 
 ### 4.3 Authentication
