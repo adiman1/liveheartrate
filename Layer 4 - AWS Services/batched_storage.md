@@ -18,6 +18,8 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 | **Kinesis Firehose**  | Buffers streaming data and delivers it to S3 in batches                   |
 | **S3 Bucket**         | Stores incoming batched heart rate data in Parquet format                 |
 
+---
+
 ## Service 1 - Kinesis Data Firehose 🚰 for Managed Delivery & Conversion
 
 1) Kinesis Data Firehose is a **serverless data delivery service**.
