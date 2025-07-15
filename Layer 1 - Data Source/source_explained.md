@@ -28,7 +28,7 @@ It has 2 parts and In our setup:
 - **Garmin** is the **peripheral/server**
 - **PC with Python** is the **central/client**
 
-- In this project, We only focus on application level data communication and do not explore low-level physical operation of the BLE protocol (such as modulation and signal transmission etc)
+- In this project, We only **Focus on Application level Data Communication** and do not explore low-level physical operation of the BLE protocol (such as modulation and signal transmission etc)
 
 ---
 
