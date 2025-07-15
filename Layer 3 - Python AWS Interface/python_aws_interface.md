@@ -104,11 +104,9 @@ pip install boto3
 
 ### 4.3 Authentication
 
-Before using boto3, ensure your environment is authenticated.
-
-Simplest method is via an AWS credentials file (~/.aws/credentials), can also use .env files and other methods available.
-
-AWS credentials is basically a folder with access creds in the user directory.
+- Before using boto3, ensure your environment is authenticated.
+- Simplest method is via an AWS credentials file (`~/.aws/credentials`), can also use `.env` files and other methods available.
+- AWS credentials is basically a folder with access creds in the user directory.
 
 ---
 
