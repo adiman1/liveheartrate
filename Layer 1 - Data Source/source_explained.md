@@ -41,7 +41,7 @@ It has 2 parts and In our setup:
 
 ### 2.2 BLE GATT Structure
 
-1) BLE communication uses something called the **Generic Attribute Profile (GATT)** to define how data is structured and exchanged over BLE.
+1) BLE communication uses something called the **Generic Attribute Profile (GATT)** to define how data is structured and exchanged.
 
 **Example GATT Profile/Data Stucture for our HR Data**
  
