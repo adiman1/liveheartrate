@@ -129,10 +129,10 @@ To use AWS SDKs, including `boto3`, you must first:
 
 KDS Config/Settings used: 
 
-- name - hr-kinesis-stream
+- name –  hr-kinesis-stream
 - Capacity mode – Provisioned
-- Provisioned shards -1
-- Write capacity - Maximum is 1 MiB/second, 1,000 records/second
+- Provisioned shards – 1
+- Write capacity – Maximum is 1 MiB/second, 1,000 records/second
 - Read capacity – Maximum, 2 MiB/second
 
 
