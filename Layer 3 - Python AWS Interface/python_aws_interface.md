@@ -52,7 +52,7 @@ This enables us to forward data instantenously to other AWS cloud services which
 
 ```plaintext
 Garmin (BLE) ──> Bleak Python PC App ──> Kinesis Data Stream ──> Lambda/Firehose/S3/OpenSearch
-        (HR)         (boto3)                 (real-time)                (processing)
+    (HR)              (boto3)                (real-time)                (processing)
 ```
 
 ---
