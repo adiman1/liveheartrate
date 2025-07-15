@@ -47,12 +47,11 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 | Buffer Interval                | 60 seconds (set max to 900)                                          |
 | Time Zone                      | Asia/Calcutta                                                        |
 
-&nbsp;
 
 > **Notes**
-> Buffer size - 64 MiB (set lowest, cause our data from KDS is a few mb at max (10 mb at max for a 15 mins run).
-> With direct json ingestion – min buffer size can be 1 Mb
-> Buffer interval - 60 seconds (set at max value 900, to get a single/couple parquet files in S3 for a 15 min run)
+> 1) Buffer size - 64 MiB (set lowest, cause our data from KDS is a few mb at max (10 mb at max for a 15 mins run).
+> 2) With direct json ingestion – min buffer size can be 1 Mb
+> 3) Buffer interval - 60 seconds (set at max value 900, to get a single/couple parquet files in S3 for a 15 min run)
 
 ---
 
