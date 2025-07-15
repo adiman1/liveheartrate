@@ -211,7 +211,7 @@ While S3 is just object storage, it becomes much more powerful when paired with 
 
 ![Query 1](https://github.com/adiman1/liveheartrate/blob/ff260a8bdfe0bd7ea94e1c2c5669ab7b5844c926/Layer%204%20-%20AWS%20Services/images/Athena%20Heart%20rate%20diff%20in%20session.png)
 
-The Complicated formatting if UTC to IST in-query can also be rectified by a Glue Job. A future scope for improvement.
+The Complicated formatting of UTC to IST, in-query, can also be rectified by a Glue Job. A future scope for improvement.
 
 ---
 
