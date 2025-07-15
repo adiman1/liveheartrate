@@ -280,7 +280,7 @@ This enables us to slice, query, and visualize heart rate trends over time.
 3. Users can **interactively zoom**, filter time ranges, and apply conditions.
 4. Since OpenSearch uses **inverted indexing**, queries and visualizations are fast and efficient.
 
-&nbps;
+&nbsp;
 
 **Click Image to Download a sample video of the Live Dashboard**
 
