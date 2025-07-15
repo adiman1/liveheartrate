@@ -41,9 +41,9 @@ It has 2 parts and In our setup:
 
 ### 2.2 BLE GATT Structure
 
-BLE communication uses somtething called the **Generic Attribute Profile (GATT)** to define how data is structured and exchanged over BLE.
+BLE communication uses something called the **Generic Attribute Profile (GATT)** to define how data is structured and exchanged over BLE.
 
-**Example GATT Profile for our HR Case**
+**Example GATT Profile for our HR Case:**
 
  
 ├── Service: Heart Rate Service (`0x180D`)  
@@ -51,9 +51,8 @@ BLE communication uses somtething called the **Generic Attribute Profile (GATT)*
 │       └── Properties: ['notify']  
 │           └── Value: e.g., Heart Rate = 90 bpm
 
-When a characteristic supports `notify`, the server/device pushes updates to the client whenever the value changes — perfect for real-time monitoring.
-
-Basically Changing/Continuous Heart rate is **pushed** to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
+-When a characteristic supports `notify`, the server/device pushes updates to the client whenever the value changes — perfect for real-time monitoring.
+-Basically Changing/Continuous Heart rate is **pushed** to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
 
 Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. 
 
