@@ -104,9 +104,9 @@ Defines what resources the Lambda is **allowed to access**.
 - Attached to the function via **Execution Role**.
 - We should grant only least-privilege permissions.
 - Common permissions include:
-  - `kinesis:GetRecords`
+  - `kinesis:GetRecords` (to fetch KDS records)
   - `logs:CreateLogStream`, `logs:PutLogEvents`
-  - `es:ESHttpPost` (for OpenSearch)
+  - `es:ESHttpPost` (for post in OpenSearch)
 - Can also include **inline policies** or use **managed policies**.
 
 ---
@@ -126,7 +126,6 @@ Accessed inside code as:
 import os
 domain = os.environ['OPENSEARCH_ENDPOINT']
 ```
-
 ---
 
 ### 3.5) Lambda Layers – Why We Needed One
@@ -144,7 +143,7 @@ domain = os.environ['OPENSEARCH_ENDPOINT']
   - Import those libraries at runtime.
   - Securely push records to OpenSearch.
 
-> Without this layer, our Lambda would fail to connect to OpenSearch due to missing auth and HTTP capabilities.
+> Without this layer, our Lambda would fail to connect to OpenSearch due to missing Auth and HTTP capabilities.
 
 ---
 
@@ -156,39 +155,42 @@ It acts as our **real-time database**, receiving individual heart rate records a
 
 ---
 
-### 1) Why OpenSearch?
-
-- Supports fast, filtered lookups across massive volumes.
-- Natively integrates with OpenSearch Dashboard for real-time charts.
-- JSON document store — ideal for time-series data like heart rate.
-- Scalable, durable, and secure.
-
----
-
-### 2) What is OpenSearch?
+### 1) What is OpenSearch?
 
 - Not a traditional database.
 - A **search-first document storage engine**.
 - Each document is stored in JSON-like structure.
+- Supports fast, filtered lookups across massive volumes.
+- Natively integrates with OpenSearch Dashboard for real-time charts.
 - Perfect for logging, telemetry, and live metrics dashboards.
 
 ---
 
-### Configuration Summary
+### 2) OpenSearch Structure Overview
 
-| Parameter            | Value                      |
-|----------------------|----------------------------|
-| Index Name           | `heart_rate`               |
-| Timestamp Field      | `timestamp` (type: date)   |
-| Heart Rate Field     | `heart_rate` (type: int)   |
-| Shards               | 1                          |
-| Replicas             | 1 (but yellow status due to 1-node setup) |
-| Cluster Type         | Single AZ, 1-node (t3.small) |
-| Storage              | EBS gp3 - 10 GiB, 3000 IOPS |
-| IP Access Type       | Public IPv4                |
-| Auth & Access Control| IAM + Fine-Grained via Role |
+OpenSearch stores and organizes data in a **hierarchical structure** similar to a database system but optimized for search and analytics.
 
-### Index Mapping
+---
+
+### 3) Core Concepts
+
+| Concept        | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| **Cluster**    | A group of one or more nodes (servers) that holds all data and handles requests. |
+| **Node**       | A single instance of OpenSearch. In our case, we used a single-node cluster. |
+| **Index**      | Equivalent to a **table** in a database. Each index stores a set of documents. |
+| **Document**   | A **JSON object** representing a single record (e.g., one heart rate reading). |
+| **Mapping**    | The **schema definition** of an index — defines fields, types, and structure. |
+| **Shard**      | A physical division of an index. Enables horizontal scalability and parallelism. |
+| **Replica**    | A copy of a shard for fault tolerance. Stored on a different node than the primary shard. |
+
+---
+
+### 4) Index Mapping: `heart_rate`
+
+In our setup, we created an index called **`heart_rate`**, which stores real-time HR data streamed from BLE to OpenSearch via Lambda.
+
+Here’s the mapping configuration used:
 
 ```json
 {
@@ -205,11 +207,72 @@ It acts as our **real-time database**, receiving individual heart rate records a
 }
 
 
+### Configuration Summary
+
+| Parameter            | Value                      |
+|----------------------|----------------------------|
+| Index Name           | `heart_rate`               |
+| Timestamp Field      | `timestamp` (type: date)   |
+| Heart Rate Field     | `heart_rate` (type: int)   |
+| Shards               | 1                          |
+| Replicas             | 1 (but yellow status due to 1-node setup) |
+| Cluster Type         | Single AZ, 1-node (t3.small) |
+| Storage              | EBS gp3 - 10 GiB, 3000 IOPS |
+| IP Access Type       | Public IPv4                |
+| Auth & Access Control| IAM + Fine-Grained via Role |
 
 
 
 
 
+
+
+
+### Additional but Necessary Information
+
+### 1) What is SigV4 (Signature Version 4)?
+
+**SigV4** (Signature Version 4) is AWS's protocol for **securely signing API requests**. It ensures:
+
+- **Authentication**: The caller is who they claim to be.
+- **Authorization**: The caller has the right IAM permissions.
+- **Integrity**: The request hasn’t been tampered with during transit.
+
+Structure:
+- An HMAC-based signature generated using **temporary IAM credentials**.
+- A `Host`, `X-Amz-Date`, and `Authorization` header.
+- A hashed version of the request body and parameters.
+
+---
+
+### 2) Why SigV4 in Our Live Visualization Flow?
+
+Our architecture uses **Amazon OpenSearch** for real-time visualization, and OpenSearch domains configured with **fine-grained IAM access control** require all HTTP requests to be signed using SigV4.
+
+FGAC (fine-grained IAM access control) - To create a master user for OS Domain and access it via masters ID and password
+
+---
+
+### 3) Where SigV4 Is Used in the Flow
+
+| Component      | Role in SigV4                                                |
+|----------------|--------------------------------------------------------------|
+| **Lambda**     | Acts as the **caller**. Gets temporary IAM credentials.      |
+| **requests_aws4auth** | Signs the `requests.post()` call to OpenSearch using SigV4. |
+| **OpenSearch** | Accepts only **signed requests** when IAM-based access control is enabled. |
+| **IAM Role**   | Lambda's execution role has the permission to post to OpenSearch. |
+
+---
+
+### 4) Without SigV4?
+OpenSearch would **reject all unsigned requests** with a 403 "not authorized" error, even if the data is valid.
+
+---
+
+### 5) Summary
+
+- SigV4 ensures **secure, authenticated, and authorized** communication between your Lambda function and OpenSearch.
+- Tools like `requests_aws4auth` make it easy to generate signed HTTP requests using the credentials automatically assumed by Lambda at runtime.
 
 
 
