@@ -41,9 +41,9 @@ It has 2 parts and In our setup:
 
 ### 2.2 BLE GATT Structure
 
-BLE communication uses something called the **Generic Attribute Profile (GATT)** to define how data is structured and exchanged over BLE.
+1) BLE communication uses something called the **Generic Attribute Profile (GATT)** to define how data is structured and exchanged over BLE.
 
-**Example GATT Profile for our HR Case:**
+**Example GATT Profile for our HR Case**
 
  
 ├── Service: Heart Rate Service (`0x180D`)  
@@ -51,12 +51,13 @@ BLE communication uses something called the **Generic Attribute Profile (GATT)**
 │       └── Properties: ['notify']  
 │           └── Value: e.g., Heart Rate = 90 bpm
 
--When a characteristic supports `notify`, the server/device pushes updates to the client whenever the value changes — perfect for real-time monitoring.
--Basically Changing/Continuous Heart rate is **pushed** to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
+2) When a characteristic supports `notify`, the server/device pushes updates to the client whenever the value changes — perfect for real-time monitoring.
+   
+3) Basically Changing/Continuous Heart rate is **pushed** to our PC on we are subscribed to the garmin device and the service (i.e) Heart Rate Service (0x180D).
+   
+4) Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. 
 
-Each value in the GATT structure is uniquely identified using a **UUID (Universally Unique Identifier)**. 
-
-The GATT profiles and UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
+5) The GATT profiles and UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
 
 ---
 
@@ -75,9 +76,9 @@ In our case Heart Rate Services and Notifications
 
 ## 3. Data Format (Heart Rate Characteristic `0x2A37`)
 
-Garmin sends **binary packets** with the heart rate and optional data fields when subscribed to the `Heart Rate Measurement` characteristic.
+1) Garmin sends **binary packets** with the heart rate and optional data fields when subscribed to the `Heart Rate Measurement` characteristic.
 
-Say it sends an example packet with say two 8-bit Binary bytes:  
+2) Say it sends an example packet with say two 8-bit Binary bytes:  
 
 - **Byte 0**: 00010100
 - **Byte 1**: 01011010
@@ -86,7 +87,7 @@ Say it sends an example packet with say two 8-bit Binary bytes:
 > 1. Each bit is either 0 or 1  
 > 2. Bits in a byte are read from **right to left**
 
-According to the SIG specs for (Heart Rate Characteristic/UUID - `0x2A37`):
+3) According to the SIG specs for (Heart Rate Characteristic/UUID - `0x2A37`):
 
 - **Byte 0**   → Flags  
 - **Byte 1–2** → Heart Rate Value  
@@ -97,11 +98,11 @@ According to the SIG specs for (Heart Rate Characteristic/UUID - `0x2A37`):
 
 ### 3.1 Byte 0 – Flags
 
-Flags are indicators that show whether optional attributes are present.  
+1) Flags are indicators that show whether optional attributes are present.  
 
-Since there are 8 bits, each one signifies the presence/absence of a feature.
+2) Since there are 8 bits, each one signifies the presence/absence of a feature.
 
-Therfore the SIG Defined flag attributes for each bit in Byte 0 are
+3) Therfore the SIG Defined flag attributes for each bit in Byte 0 are
 
 | Bit | Meaning                                             |
 |-----|-----------------------------------------------------|
@@ -132,9 +133,9 @@ Therfore the SIG Defined flag attributes for each bit in Byte 0 are
 
 Byte 1 = `01011010`
 
-This Byte 1 binary value represents the actual **Heart Rate (HR)** in beats per minute.
+1) This Byte 1 binary value represents the actual **Heart Rate (HR)** in beats per minute.
 
-Here each bit has a **power of 2** value as per SIG definition for Byte 1:
+2) Here each bit has a **power of 2** value as per SIG definition for Byte 1:
 
 | Bit Position (index) | 7   | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
 |----------------------|-----|----|----|----|----|----|----|----|
@@ -147,7 +148,7 @@ And the breakdown of the byte:
 | Bit Value (binary)   | 0 | 1 | 0 | 1 | 1 | 0 | 1 | 0 |
 | Contribution         | 0 |64 | 0 |16 | 8 | 0 | 2 | 0 |
 
-**Sum** = 64 + 16 + 8 + 2 = **90 bpm**
+3) **Sum** = 64 + 16 + 8 + 2 = **90 bpm**
 
 So, `01011010` = **90 beats per minute**
 
