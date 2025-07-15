@@ -21,7 +21,7 @@ This is achieved using the **Bleak** library in Python, a modern, asynchronous B
 
 ---
 
-## 2.1 What is async?
+### 2.1 What is async?
 
 **Asynchronous programming** (often called "async") allows a program to perform other operations **without waiting** for a time-consuming task to finish.
 
