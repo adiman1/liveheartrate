@@ -118,9 +118,12 @@ We know our Firehose Buffer Config is:
 | Buffer Size                    | 64 MB                                                                |
 | Buffer Interval                | 60 seconds                                                           |
 
-### How these Buffers Affects Partition Count
+### How the Buffer Interval affects Partition Count
 
-Example: A 15-minute session with 60-second buffer interval, implies a folder created in S3 every 60 sec/1 min
+Example: 
+- A 15-minute session (set in py code)
+- with 60-second buffer interval (in Firehose),
+- implies a folder created in S3 **every 60 sec/1 min**
 
 ** Let’s assume your run started at - 2025/07/15/17:10:00**
 
