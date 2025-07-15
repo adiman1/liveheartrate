@@ -61,5 +61,5 @@
 
 Since each json record in our is **Only 2 KB in Size and we get 2 records per sec implying Extremely low Write Throughput.** 
 
-Therfore we have used config for the **Least compute.**
+Therfore we have used config for the **Fastest setup and Least compute.**
 
