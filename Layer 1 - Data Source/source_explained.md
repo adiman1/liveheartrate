@@ -151,5 +151,5 @@ So, `01011010` = **90 beats per minute**
 
 ---
 
-Next, we’ll walk through how to subscribe to this data via Python and forward it to the cloud.
+Next, In Layer 2 - we’ll walk through how to subscribe to this data via Python and forward it to the cloud.
 
