@@ -151,6 +151,8 @@ Here’s what each of these parameters means:
 | **Write Capacity**  | Limited by shard count. For 1 shard, your producer (BLE script) should stay within this limit. |
 | **Read Capacity**   | Shared across all consumers (e.g., Lambda, Firehose, OpenSearch). |
 
+&nbsp;
+
 > 1 shard is sufficient for single-device heart rate data.  
 > You can always **scale up** later by splitting or merging shards.
 
