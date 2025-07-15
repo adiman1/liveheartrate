@@ -5,4 +5,8 @@ It reads data over Bluetooth using Python libraries, then uses AWS services to l
 
 The project is explained in layers
 
+&nbsp;
+
+**High Level Data Flow over Tools**
+
 ![High Level Data Flow over Tools](https://github.com/adiman1/liveheartrate/blob/a00cdcde870b9a315ff554fa7fec4609def762c6/images/HR%20Stream%20flow.jpg)
