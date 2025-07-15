@@ -21,13 +21,13 @@ This project applies the same principle using AWS services.
 
 ## Components Mapping
 
-| Lambda Layers     | Implementation Used                                                                         |
-|-------------------|---------------------------------------------------------------------------------------------|
-| **Batch Layer**   | 1) **Amazon S3 via Firehose**: stores all raw heart rate data                               |
-|                   | 2) **AWS Glue + Athena**: for historical / Ad Hoc querying                                  |
-| **Speed Layer**   | 1) **AWS Lambda**: processes real time records from Kinesis Stream                          |
-|                   | 2) **Amazon OpenSearch**: receives real-time processed data, acts as TimeSeries DB          |
-| **Serving Layer** | 1) **OpenSearch Dashboard**: unified analytics and alerts                                   |
+| Lambda Layers     | Implementation Used                                                                      |
+|-------------------|------------------------------------------------------------------------------------------|
+| **Batch Layer**   | **Amazon S3 via Firehose**: stores all raw heart rate data                               |
+|                   | **AWS Glue + Athena**: for historical / Ad Hoc querying                                  |
+| **Speed Layer**   | **AWS Lambda**: processes real time records from Kinesis Stream                          |
+|                   | **Amazon OpenSearch**: receives real-time processed data, acts as TimeSeries DB          |
+| **Serving Layer** | **OpenSearch Dashboard**: unified analytics and alerts                                   |
 
 ---
 
