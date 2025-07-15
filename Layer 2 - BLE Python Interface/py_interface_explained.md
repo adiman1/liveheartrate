@@ -37,7 +37,7 @@ In Python, this is done using the `async` and `await` keywords, and is supported
 | Program halts while waiting (e.g. for data) | Program stays responsive while waiting       |
 | Not ideal for I/O heavy tasks               | Ideal for I/O, networking, BLE communication |
 
-![Sync vs Async](Layer%202%20-%20BLE%20Python%20Interface/images/sync%20vs%20async.png)
+![Sync vs Async](https://raw.githubusercontent.com/adiman1/liveheartrate/eb24ab606c596689516abb964121eb7efeb1afc1/Layer%20%2D%20BLE%20Python%20Interface/images/sync%20vs%20async.png)
 
 ---
 
