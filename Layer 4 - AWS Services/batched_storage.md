@@ -50,8 +50,8 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 
 > **Notes**
 > 1) Buffer size - 64 MB (set lowest, cause our data from KDS is a few mb at max (10 mb at max for a 15 mins run).
-> 2) With direct JSON ingestion – min buffer size can be set at 1 mb
-> 3) Buffer interval - 60 seconds (set at max value 900, to get a single/couple parquet files in S3 for a 15 min run)
+> 2) With direct JSON ingestion – min buffer size can be set at 1 mb.
+> 3) Buffer interval - 60 seconds (set at max value 900, to get a single/couple parquet files in S3 for a 15 min run).
 
 ---
 
@@ -63,7 +63,7 @@ Kinesis Data Stream → Kinesis Firehose → S3 (Parquet)
 ### 1) S3 Folder Structure
 
 1) First create a Bucket.
-2) In our case, we created one called garmin-hr-s3-bucket
+2) In our case, we created one called garmin-hr-s3-bucket.
 3) If you observe this was given as the name for the Firehose Target. **Hence create S3 object first.**
 4) Also you can observe a Firehose config called **S3 Prefix**. This is used to partition the incoming Firehose data.
    
@@ -159,11 +159,62 @@ Parquet Files can be seen in each session folder.
 - S3 objects live forever unless deleted or transitioned via lifecycle rules.
 - You pay for storage, requests, and transfers separately.
 - Optimize costs using:
-  - Fewer, larger files
-  - Appropriate storage class transitions
-  - Lifecycle policies for cleanup
+  - Fewer, larger files.
+  - Appropriate storage class transitions.
+  - Lifecycle policies for cleanup.
 
 ---
+
+## 📚 Why Query S3 Data & How Glue + Athena Help
+
+### 🔸 The Need
+
+As heart rate data (or any time-series stream) is delivered to Amazon S3 — especially in formats like **Parquet** and structured with time-based folders — there's often a need to:
+
+- **Explore recent data** for quick insights.
+- **Run ad hoc analytics** across multiple sessions/days.
+- **Build dashboards** or reports on top of streaming output.
+- Avoid writing custom code just to parse or join large files.
+
+While S3 is just object storage, it becomes much more powerful when paired with tools that can **understand its structure** and **query it like a database**.
+
+---
+
+## The Need for Additional Services
+
+As heart rate data (or any time-series stream) is delivered to Amazon S3 — especially in formats like **Parquet** and structured with time-based folders — there's often a need to:
+
+- **Explore recent data** for quick insights.
+- **Run ad hoc analytics** across multiple sessions/days.
+- **Build dashboards** or reports on top of streaming output.
+- Avoid writing custom code just to parse or join large files.
+
+While S3 is just object storage, it becomes much more powerful when paired with tools that can **understand its structure** and **query it like a database**.
+
+### 1) Additional Service - AWS Glue
+
+- **Glue Crawlers** scan your S3 paths (like `s3://.../heart_rate_data/2025/07/15/...`) and:
+  - Detect file formats (e.g. Parquet).
+  - Infer table structure (columns, types).
+  - Identify partition keys based on folder structure.
+
+- Result: a **catalog table** (like a database table) stored in the **Glue Data Catalog**.
+
+>  Crawlers can be scheduled to run periodically as new data lands.
+
+---
+
+### 2) Additional Service - Amazon Athena
+
+- Athena can **query S3 directly** using SQL — no need to move or transform data.
+- Uses the **Glue Data Catalog** as a source of table definitions.
+- Supports efficient, on-demand queries over partitioned datasets.
+
+---
+
+
+
+
 
 
 
