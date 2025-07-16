@@ -5,9 +5,7 @@
 
 ## 1) Architecture Overview
 
-### This project uses a Lambda-like Architecture
-
-This project implements a real time heart rate monitoring pipeline using a simplified **Lambda Architecture** pattern.
+### This project uses a Simplified Lambda-like Architecture
 
 Lambda Architecture is a data-processing design that combines:
 - **Batch processing**: handle and store large volume data
