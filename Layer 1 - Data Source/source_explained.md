@@ -64,7 +64,7 @@ It has 2 parts and In our setup:
 
 2) The GATT profiles and UUIDs are standards assigned by the **Bluetooth SIG (Special Interest Group)** and are supported by most smartwatches.
 
-For Example: These ID's are the one used to subscribe for relevant data of the device. (1.e) Heart Rate Services and Notifications
+For Example: These ID's are the one used to subscribe for relevant data of the device. (i.e) Heart Rate Services and Notifications
 
 | Component              | UUID (Short) | Full UUID                                      |
 |------------------------|--------------|------------------------------------------------|
