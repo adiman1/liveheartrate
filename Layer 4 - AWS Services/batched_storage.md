@@ -106,7 +106,7 @@ Each record sent from your Python BLE script includes a field like:
 ```
 
 1) This timestamp is part of the data payload, but Firehose ignores it for partitioning.
-2) Firehose instead uses the record ingestion time (i.e., when Firehose receives it) for substituting placeholders in your configured S3 prefix:
+2) Firehose instead uses the record ingestion time (i.e. when Firehose receives it) for substituting placeholders in your configured S3 prefix:
    - heart_rate_data/!{timestamp:yyyy}/!{timestamp:MM}/!{timestamp:dd}/session_!{timestamp:HH-mm-ss}/
 
 ### 2) How Firehose Buffer Settings Affect Delivery
