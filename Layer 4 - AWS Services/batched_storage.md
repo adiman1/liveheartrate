@@ -176,6 +176,8 @@ As heart rate data (or any time-series stream) is delivered to Amazon S3 — esp
 
 While S3 is just object storage, it becomes much more powerful when paired with tools that can **understand its structure** and **query it like a database**.
 
+---
+
 ### 1) Additional Service - AWS Glue
 
 - **Glue Crawlers** scan your S3 paths (like `s3://.../heart_rate_data/2025/07/15/...`) and:
