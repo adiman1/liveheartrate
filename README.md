@@ -31,3 +31,5 @@ This project applies the same principle using AWS services.
 ## 3) Data Flow
 
 ![High Level Data Flow over Tools](https://github.com/adiman1/liveheartrate/blob/0a2f8de1a3f68ac8a19e7b2890908e6a8047af2a/images/aws%20flow_page-0001.JPG)
+
+## 4) Sample trial plotted in pandas
