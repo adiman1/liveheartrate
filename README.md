@@ -34,10 +34,11 @@ This project applies the same principle using AWS services.
 
 ## 4) Sample trials
 
-** Stream Data Plotted in Pandas**
-
-![Streamed Output Plotted in Pandas](https://github.com/adiman1/liveheartrate/blob/7c107e76e499c53edc8f0b55a47ab1c4ee1002a4/images/pandas_output.png)
-
 **Click Image to Download a sample video of the OpenSearch Live Dashboard**
 
 [![Watch Live Demo](https://github.com/adiman1/liveheartrate/raw/ae07506a38c7b8cb48a4dea78600e1bb44360c1d/Layer%204%20-%20AWS%20Services/images/live_stream_end.png)](https://github.com/adiman1/liveheartrate/raw/e126701b2c4053bde1ce51f4c42d09ace07613ae/OpenSearch%20Dashboard%20Livestream.mp4)
+
+
+**Stream Data Plotted in Pandas**
+
+![Streamed Output Plotted in Pandas](https://github.com/adiman1/liveheartrate/blob/7c107e76e499c53edc8f0b55a47ab1c4ee1002a4/images/pandas_output.png)
