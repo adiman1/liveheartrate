@@ -34,7 +34,7 @@ This project applies the same principle using AWS services.
 
 ## 4) Sample trials
 
-**Click Image to Download a sample video of the OpenSearch Live Dashboard**
+**Click Image to view video of the OpenSearch Live Dashboard**
 
 [![Watch Live Demo](https://github.com/adiman1/liveheartrate/raw/ae07506a38c7b8cb48a4dea78600e1bb44360c1d/Layer%204%20-%20AWS%20Services/images/live_stream_end.png)](https://drive.google.com/file/d/1Qk0ibFtNfzlbsWfBlkbZz4E6CQpzWGjz/view?usp=drive_link)
 
